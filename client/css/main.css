@@ -1,24 +1,17 @@
 .tile {
   height: 60px;
+  display: block;
 }
 
+.navbar {
+  text-align: right;
+}
+
+.inputfield {
+  padding-bottom: 5px;
+  height: 20px;
+  width: 200px;
+}
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

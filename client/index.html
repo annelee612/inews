@@ -11,7 +11,7 @@
     </head>
     <body ng-app='inews' ng-controller="navController" ng-cloak>
 
-      <div>
+      <div class='navbar'>
         <md-button ng-hide='isAuth()' ng-click="signinshow($event)" class="md-raised">
           Sign In
         </md-button>
@@ -30,37 +30,38 @@
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isLocNewsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <div ng-repeat='news in localnews | limitTo:lim1' ng-show='!isLocNewsLoading'>
+          <md-card ng-repeat='news in localnews | limitTo:lim1' ng-show='!isLocNewsLoading'>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <p>{{ news.name}}</p>
+              <span class="md-headline">{{ news.name}}</span>
             </a>
-            <p>{{ news.description}}</p>
-            <p>{{ news.datePublished}}</p>
-          </div>
-          <button ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</button>
+            <span class="md-subhead">{{ news.description}}</span>
+            <span class="md-subhead">{{ news.datePublished}}</span>
+          </md-card>
+          <md-button ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</md-button>
         </div>
 
         <div flex>
           <h2>News Search</h2>
           <form ng-show='isAuth()'>
-            <input ng-model='search' type="text" name="search">
-            <input ng-click='initializeSearch(search)' type="submit" value="Search">
+            <input class='inputfield' ng-model='search' type="text" name="search">
+            <md-button ng-click='initializeSearch(search)' type="submit">Search</md-button>
           </form>
           <br>
           <p ng-hide='isAuth()'>Sign in to use the search feature!</p>
+
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isSearchNewsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <div ng-repeat='news in searchnews | limitTo:lim2' ng-show='!isSearchNewsLoading'>
+          <md-card ng-repeat='news in searchnews | limitTo:lim2' ng-show='!isSearchNewsLoading'>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <p>{{ news.name}}</p>
+              <span class="md-headline">{{ news.name}}</span>
             </a>
-            <p>{{ news.description}}</p>
-            <p>{{ news.datePublished}}</p>
-          </div>
-          <button ng-show='isAuth()' ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</button>
+            <span class="md-subhead">{{ news.description}}</span>
+            <span class="md-subhead">{{ news.datePublished}}</span>
+          </md-card>
+          <md-button ng-show='isAuth()' ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</md-button>
         </div>
       </div>
 
@@ -68,45 +69,45 @@
         <div flex>
           <h2>{{city1 || 'Custom 1'}} News</h2>
           <form ng-show='isAuth()'>
-            <input ng-model='city1' type="text" name="city1">
-            <input ng-click='initializeCustom1(city1)' type="submit" value="Save">
+            <input class='inputfield' ng-model='city1' type="text" name="city1">
+            <md-button ng-click='initializeCustom1(city1)' type="submit">Save</md-button>
           </form>
           <br>
           <p ng-hide='isAuth()'>Sign in to save your custom news here!</p>
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isCustom1newsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <div ng-show='isAuth() && !isCustom1newsLoading' ng-repeat='news in custom1news | limitTo:lim1'>
+          <md-card ng-show='isAuth() && !isCustom1newsLoading' ng-repeat='news in custom1news | limitTo:lim1'>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <p>{{ news.name}}</p>
+              <span class="md-headline">{{ news.name}}</span>
             </a>
-            <p>{{ news.description}}</p>
-            <p>{{ news.datePublished}}</p>
-          </div>
-          <button ng-show='isAuth()' ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</button>
+            <span class="md-subhead">{{ news.description}}</span>
+            <span class="md-subhead">{{ news.datePublished}}</span>
+          </md-card>
+          <md-button ng-show='isAuth()' ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</md-button>
         </div>
 
         <div flex>
           <h2>{{city2 || 'Custom 2'}} News</h2>
           <form ng-show='isAuth()'>
-            <input ng-model='city2' type="text" name="city2">
-            <input ng-click='initializeCustom2(city2)' type="submit" value="Save">
+            <input class='inputfield' ng-model='city2' type="text" name="city2">
+            <md-button ng-click='initializeCustom2(city2)' type="submit">Save</md-button>
           </form>
           <br>
           <p ng-hide='isAuth()'>Here is another! Sign up for a free account now!</p>
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isCustom2newsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <div ng-show='isAuth() && !isCustom2newsLoading' ng-repeat='news in custom2news | limitTo:lim2'>
+          <md-card ng-show='isAuth() && !isCustom2newsLoading' ng-repeat='news in custom2news | limitTo:lim2'>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <p>{{ news.name}}</p>
+              <span class="md-headline">{{ news.name}}</span>
             </a>
-            <p>{{ news.description}}</p>
-            <p>{{ news.datePublished}}</p>
-          </div>
-          <button ng-show='isAuth()' ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</button>
+            <span class="md-subhead">{{ news.description}}</span>
+            <span class="md-subhead">{{ news.datePublished}}</span>
+          </md-card>
+          <md-button ng-show='isAuth()' ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</md-button>
         </div>
       </div>
 
@@ -116,15 +117,15 @@
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isUSNewsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <div ng-repeat='news in usNews | limitTo:lim1' ng-show='!isUSNewsLoading'>
+          <md-card ng-repeat='news in usNews | limitTo:lim1' ng-show='!isUSNewsLoading'>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.urlToImage}}'>
-              <p>{{ news.title}}</p>
+              <span class="md-headline">{{ news.title}}</span>
             </a>
-            <p>{{ news.description}}</p>
-            <p>{{ news.publishedAt}}</p>
-          </div>
-          <button ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</button>
+            <span class="md-subhead">{{ news.description}}</span>
+            <span class="md-subhead">{{ news.publishedAt}}</span>
+          </md-card>
+          <md-button ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</md-button>
         </div>
 
         <div flex>
@@ -132,15 +133,15 @@
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isWorldNewsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <div ng-repeat='news in worldNews | limitTo:lim2' ng-show='!isWorldNewsLoading'>
+          <md-card ng-repeat='news in worldNews | limitTo:lim2' ng-show='!isWorldNewsLoading'>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.urlToImage}}'>
-              <p>{{ news.title}}</p>
+              <span class="md-headline">{{ news.title}}</span>
             </a>
-            <p>{{ news.description}}</p>
-            <p>{{ news.publishedAt}}</p>
-          </div>
-          <button ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</button>
+            <span class="md-subhead">{{ news.description}}</span>
+            <span class="md-subhead">{{ news.publishedAt}}</span>
+          </md-card>
+          <md-button ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</md-button>
         </div>
       </div>
 
