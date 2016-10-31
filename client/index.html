@@ -12,6 +12,8 @@
     <body ng-app='inews' ng-controller="navController" ng-cloak>
 
       <div class='navbar'>
+        <img class='logo' src='./assets/logo.png' />
+        <div class='loginbox'>
         <md-button ng-hide='isAuth()' ng-click="signinshow($event)" class="md-raised">
           Sign In
         </md-button>
@@ -21,6 +23,7 @@
         <md-button ng-show='isAuth()' ng-click="logout()" class="md-raised">
           Sign Out
         </md-button>
+      </div>
         <p>{{error}}</p>
       </div>
 
@@ -30,7 +33,7 @@
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isLocNewsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <md-card ng-repeat='news in localnews | limitTo:lim1' ng-show='!isLocNewsLoading'>
+          <md-card class="md-padding" md-theme="light-green" ng-repeat='news in localnews | limitTo:lim1' ng-show='!isLocNewsLoading'>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
               <span class="md-headline">{{ news.name}}</span>
@@ -53,7 +56,7 @@
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isSearchNewsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <md-card ng-repeat='news in searchnews | limitTo:lim2' ng-show='!isSearchNewsLoading'>
+          <md-card class="md-padding" md-theme="light-green" ng-repeat='news in searchnews | limitTo:lim2' ng-show='!isSearchNewsLoading'>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
               <span class="md-headline">{{ news.name}}</span>
@@ -77,7 +80,7 @@
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isCustom1newsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <md-card ng-show='isAuth() && !isCustom1newsLoading' ng-repeat='news in custom1news | limitTo:lim1'>
+          <md-card class="md-padding" md-theme="light-orange" ng-show='isAuth() && !isCustom1newsLoading' ng-repeat='news in custom1news | limitTo:lim1'>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
               <span class="md-headline">{{ news.name}}</span>
@@ -99,7 +102,7 @@
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isCustom2newsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <md-card ng-show='isAuth() && !isCustom2newsLoading' ng-repeat='news in custom2news | limitTo:lim2'>
+          <md-card class="md-padding" md-theme="light-orange" ng-show='isAuth() && !isCustom2newsLoading' ng-repeat='news in custom2news | limitTo:lim2'>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
               <span class="md-headline">{{ news.name}}</span>
@@ -117,7 +120,7 @@
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isUSNewsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <md-card ng-repeat='news in usNews | limitTo:lim1' ng-show='!isUSNewsLoading'>
+          <md-card class="md-padding" md-theme="light-blue" ng-repeat='news in usNews | limitTo:lim1' ng-show='!isUSNewsLoading' md-theme-watch>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.urlToImage}}'>
               <span class="md-headline">{{ news.title}}</span>
@@ -133,7 +136,7 @@
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isWorldNewsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <md-card ng-repeat='news in worldNews | limitTo:lim2' ng-show='!isWorldNewsLoading'>
+          <md-card class="md-padding" md-theme="light-blue" ng-repeat='news in worldNews | limitTo:lim2' ng-show='!isWorldNewsLoading'>
             <a ng-href="{{ news.url}}">
               <img class='tile' ng-src='{{ news.urlToImage}}'>
               <span class="md-headline">{{ news.title}}</span>
