@@ -45,6 +45,38 @@ This app is great for people traveling who want quick access to location based n
 - Mocha 3.1.x
 - Browser-sync 2.17.x
 
+### API Doc
+
+| Type | URI | Argument(s) | Authentication | Comment |
+|------|-----|-------------|---------|----------|
+| POST | /login | User | Anonymous | Logs in a user |
+| POST | /logout | | User | Logs out a user |
+| POST | /register | User | Anonymous | Registers a new user|
+| POST | /api/newsfeeds | Newsfeed | User | Creates a new feed for current user | 
+| GET  | /api/newsfeeds | | User, Anonymous | Returns a list of current user's feeds |
+| GET  | /api/newsfeeds/:id | Newsfeed id | User | Returns a spesific newsfeed for a user |
+| PUT  | /api/newsfeeds | Newsfeed | User | Updates current newsfeed |
+| DELETE | /api/newsfeeds/:id | Newsfeed id | User | Deletes a users newsfeed |
+| GET  | /api/weather | ?lat&lon | Anonymous | Returns current locations weather |
+
+### Project Structure
+
+```sh
+client/
+  - components/
+    - addNewsfeed.jsx
+    - newsfeed.jsx
+    - newsfeedEntry.jsx
+    - login.jsx
+    - register.jsx
+  - assets/
+    - styles.scss
+    - images/
+      - logo.png
+  - index.html
+  - main.js
+```
+
 ### Installing Dependencies
 
 From within the root directory:
