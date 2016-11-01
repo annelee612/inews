@@ -1,10 +1,14 @@
 # inews - your local news aggregator
 
-![Build Status](https://travis-ci.org/maoist-macaroon/inews.svg?branch=master)
+Legacy project for Musical Saws.
 
 > News aggregator by location - Subscribe and get your local news on your fingertip!
 
-## Team
+## Legacy Team
+
+- __Development Team Members__: Anne Lee, Robin Gulbrandsen, Tom Grek
+
+## Original Team
 
 - __Product Owner__: Aleks Basalilov
 - __Scrum Master__: Fin Layanto
@@ -52,7 +56,7 @@ This app is great for people traveling who want quick access to location based n
 | POST | /login | User | Anonymous | Logs in a user |
 | POST | /logout | | User | Logs out a user |
 | POST | /register | User | Anonymous | Registers a new user|
-| POST | /api/newsfeeds | Newsfeed | User | Creates a new feed for current user | 
+| POST | /api/newsfeeds | Newsfeed | User | Creates a new feed for current user |
 | GET  | /api/newsfeeds | | User, Anonymous | Returns a list of current user's feeds |
 | GET  | /api/newsfeeds/:id | Newsfeed id | User | Returns a spesific newsfeed for a user |
 | PUT  | /api/newsfeeds | Newsfeed | User | Updates current newsfeed |
@@ -83,13 +87,13 @@ From within the root directory:
 
 ```sh
 npm install
-//postinstall installs bower dependencies 
+//postinstall installs bower dependencies
 //automatically
 
 ```
 ### Roadmap
 
-View the project roadmap [https://github.com/maoist-macaroon/inews/issues]
+View the project roadmap [https://github.com/tomgrek/inews/issues]
 
 
 ## Contributing
