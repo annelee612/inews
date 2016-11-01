@@ -62,24 +62,7 @@ This app is great for people traveling who want quick access to location based n
 | PUT  | /api/newsfeeds | Newsfeed | User | Updates current newsfeed |
 | DELETE | /api/newsfeeds/:id | Newsfeed id | User | Deletes a users newsfeed |
 | GET  | /api/weather | ?lat&lon | Anonymous | Returns current locations weather |
-
-### Project Structure
-
-```sh
-client/
-  - components/
-    - addNewsfeed.jsx
-    - newsfeed.jsx
-    - newsfeedEntry.jsx
-    - login.jsx
-    - register.jsx
-  - assets/
-    - styles.scss
-    - images/
-      - logo.png
-  - index.html
-  - main.js
-```
+| GET  | /api/localnews | ?lat&lon | Anonymous | Returns local news for the user |
 
 ### Installing Dependencies
 
