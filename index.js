@@ -6,7 +6,10 @@ var bodyParser = require('body-parser');
 
 //local files
 var newsRouter = require('./server/routers/getnews.js');
-var userPrefsRouter = require('./server/routers/getUserPrefs.js')
+var userPrefsRouter = require('./server/routers/getUserPrefs.js');
+const feedRouter = require('./server/routers/getFeed.js');
+const specialRouter = require('./server/routers/getSpecial.js');
+
 var config = require('./server/config.js');
 
 //models
@@ -67,6 +70,8 @@ passport.use(new LocalStrategy(function(username, password, done) {
 //routes middleware point to ./server/routers/...
 server.use('/api/getnews', newsRouter);
 server.use('/api/user', userPrefsRouter);
+server.use('/api/newsfeeds', feedRouter);
+server.use('/api', specialRouter);
 
 server.all('/login', passport.authenticate('local', {failWithError: true}),
   function(req, res, next) {
