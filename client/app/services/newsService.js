@@ -1,16 +1,24 @@
 'use strict';
 
 angular.module('inews.services.newsService', [])
-.factory('newsService', function(httpService) {
+.factory('newsService', function($q, httpService) {
 
   var _validateNewsfeed = function(newsfeed) {
     return true;
   };
 
   var getAllFeeds = function() {
-    var feedsPromise = httpService.get('/api/newsfeeds');
-    var weatherPromise = httpService.get('/api/weather');
-    return [];
+    return $q.all([httpService.get('/api/newsfeeds'),
+                   httpService.get('/api/weather?lat=37.7806521&lon=-122.40707229999998'),
+                   httpService.get('/api/localnews?lat=37.7806521&lon=-122.40707229999998')])
+    .then(function(results) {
+      console.log(results);
+      return results;
+    }).catch(function(error) {
+      console.log('catched an error');
+      console.log(error);
+      return [];
+    });
   };
 
   var getNewsForFeed = function(newsfeedId) {
@@ -44,4 +52,4 @@ angular.module('inews.services.newsService', [])
     destroyFeed: destroyFeed
   };
 
-})
+});
