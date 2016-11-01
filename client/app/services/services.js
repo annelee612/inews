@@ -66,10 +66,13 @@ angular
   var login = function(user) {
       return $http({
         method: 'POST',
-        url: '/api/user/login',
+        url: '/login',
         data: user
       })
       .then(function(resp) {
+        if (resp.data && resp.data.user) {
+          $window.localStorage.setItem('com.inews.user',JSON.stringify(resp.data.user));
+        }
         return resp;
       });
   };
@@ -77,7 +80,7 @@ angular
   var signup = function(user) {
     return $http({
       method: 'POST',
-      url: '/api/user/signup',
+      url: '/signup',
       data: user
     })
     .then(function(resp) {
@@ -89,11 +92,17 @@ angular
   };
 
   var isAuth = function () {
-    return !!$window.localStorage.getItem('com.inews');
+    return !!$window.localStorage.getItem('com.inews.user');
   };
 
   var logout = function () {
-    $window.localStorage.removeItem('com.inews');
+    return $http({
+      method: 'GET',
+      url: '/logout'
+    }).then(function(resp) {
+      $window.localStorage.removeItem('com.inews.user');
+      return resp;
+    });
   };
 
   return {
