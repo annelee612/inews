@@ -3,6 +3,8 @@
 angular.module('inews', [
   'ngMaterial',
   'inews.services',
+  'inews.services.httpService',
+  'inews.services.authService',
   'inews.defaultNews',
   'inews.localNews',
   'inews.customNews',

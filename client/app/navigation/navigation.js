@@ -4,6 +4,8 @@ angular.module('inews.navigation', [])
 
 .controller('navController', function($scope, $mdDialog, AuthenticationService, $window) {
   $scope.user = {};
+  console.log('hello');
+  var AuthenticationService = {};
 
   $scope.signinshow = function() {
     $scope.error = '';
