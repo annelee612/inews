@@ -21,7 +21,13 @@ router.route('/').post(function(req, res) {
 router.route('/:id').get(function(req, res) {
   Feed.findOne({id: req.params.id}).then(function(feed) {
     if (!feed) return res.json({message: 'No such feed'});
-    return res.json(feed);
+    if (Date.now() - feed.lastRefresh > 10000000) { // if our cached one is > 2.5hrs old, refresh it from bing news
+      console.log('Refreshing feed');
+      feed.refresh().then(refreshedFeed => res.json(refreshedFeed));
+    } else {
+      console.log('Enjoy this stale news');
+      return res.json(feed);
+    }
   });
 });
 
