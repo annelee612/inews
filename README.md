@@ -55,7 +55,7 @@ This app is great for people traveling who want quick access to location based n
 |------|-----|-------------|---------|----------|
 | POST | /login | User | Anonymous | Logs in a user |
 | POST | /logout | | User | Logs out a user |
-| POST | /register | User | Anonymous | Registers a new user|
+| POST | /signup | User | Anonymous | Registers a new user|
 | POST | /api/newsfeeds | Newsfeed | User | Creates a new feed for current user |
 | GET  | /api/newsfeeds | | User, Anonymous | Returns a list of current user's feeds |
 | GET  | /api/newsfeeds/:id | Newsfeed id | User | Returns a spesific newsfeed for a user |
