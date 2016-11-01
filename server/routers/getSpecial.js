@@ -18,7 +18,6 @@ router.route('/localnews').get(function(req, res) {
   //get request to bing with our bing API key
   request(options).then(content => {
     content = JSON.parse(content);
-    console.log(content, content.place_id, content.address);
 
     let feedtitle = content.address.city + ' ' + content.address.neighbourhood;
     let feedid = feedtitle.toLowerCase().replace(/ /g, '-');
@@ -41,7 +40,7 @@ router.route('/localnews').get(function(req, res) {
 });
 
 router.route('/weather').get(function(req, res) {
-
+  res.json({id:'123', weatherdata: {current: 'sunny'}, healthWarning: 'I dont know how the API data will really look like yet'});
 });
 
 module.exports = router;
