@@ -14,17 +14,9 @@ angular.module('inews.services.httpService', [])
   }
 
   //READ
-  function getAll(relativUrl, cache, page, count) {
+  function get(relativUrl, cache) {
     return $http({
       cache: cache,
-      accept: "application/json",
-      method: "GET",
-      url: relativUrl
-    });
-  }
-
-  function get(relativUrl) {
-    return $http({
       accept: "application/json",
       method: "GET",
       url: relativUrl
@@ -42,7 +34,7 @@ angular.module('inews.services.httpService', [])
   }
 
   //DELETE
-  function deleteElement(relativUrl) {
+  function destroy(relativUrl) {
     return $http({
       accept: "application/json",
       method: "DELETE",
@@ -53,8 +45,7 @@ angular.module('inews.services.httpService', [])
   return {
     create : create,
     get : get,
-    getAll : getAll,
     update: update,
-    deleteElement : deleteElement
+    destroy : destroy
   };
 });

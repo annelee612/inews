@@ -9,7 +9,7 @@
   <link rel='stylesheet' type='text/css' href='assets/css/main.css'>
     <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
 </head>
-<body ng-app='inews' ng-controller="navController" ng-cloak>
+<body ng-app='inews' ng-controller="appCtrl" ng-cloak>
   <div class='navbar'>
     <img class='logo' src='./assets/logo.png' />
     <div class='loginbox'>
@@ -26,6 +26,7 @@
     <p>{{error}}</p>
   </div>
 
+<!--
   <div layout='row' layout-xs="column" layout-margin ng-controller='localNewsController' id='LocalNews'>
     <div flex>
       <h2>Local News</h2>
@@ -43,6 +44,7 @@
       <md-button ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</md-button>
     </div>
 
+<!--
     <div flex>
       <h2>News Search</h2>
       <form ng-show='isAuth()'>
@@ -215,7 +217,7 @@
       </md-dialog>
     </div>
   </div>
-
+-->
   <footer>
     <p>&copy; iNews 2016</p>
   </footer>
@@ -226,13 +228,9 @@
   <script src="lib/angular-material/angular-material.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
 
-  <script src="app/services/services.js"></script>
-  <script src="app/services/httpService.js"></script>
   <script src="app/services/authService.js"></script>
-  <script src="app/defaultNews/defaultNews.js"></script>
-  <script src="app/localNews/localNews.js"></script>
-  <script src="app/customNews/customNews.js"></script>
-  <script src="app/navigation/navigation.js"></script>
+  <script src="app/services/httpService.js"></script>
+  <script src="app/services/newsService.js"></script>
   <script src="app/app.js"></script>
 </body>
 </html>
