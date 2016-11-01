@@ -19,8 +19,11 @@ router.route('/').post(function(req, res) {
 });
 
 router.route('/:id').get(function(req, res) {
+  // enable the following line to restrict this route to logged-in users only
+  // if (!req.user) return res.json({message: 'You need to be logged in to view feeds'});
   Feed.findOne({id: req.params.id}).then(function(feed) {
-    if (!feed) return res.json({message: 'No such feed'});
+    // also uncomment the following to limit users to their own feeds.
+    if (!feed /*|| (feed.userId != req.user.username && feed.userId != 'everyone'*/) return res.json({message: 'No such feed'});
     if (Date.now() - feed.lastRefresh > 10000000) { // if our cached one is > 2.5hrs old, refresh it from bing news
       console.log('Refreshing feed');
       feed.refresh().then(refreshedFeed => res.json(refreshedFeed));
@@ -33,7 +36,9 @@ router.route('/:id').get(function(req, res) {
 
 router.route('/').get(function(req, res) {
   if (req.user) {
-    res.json({feeds: ['Pugs', 'Catholic Priests', 'React vs Angular', 'Hack Reactor']});
+    Feed.find({userId: req.user.username}).then(feeds => {
+      res.json(feeds.map(feed => feed.title));
+    });
   } else {
     res.json({feeds: ['Election', 'Liverpool', 'Tentacles', 'Robot Consciousness']});
   }
