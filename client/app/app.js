@@ -14,9 +14,16 @@ angular.module('inews', [
 })
 
 .controller('appCtrl', function($scope, $mdDialog, AuthenticationService, newsService, $window) {
-  $scope.user = {};
-  $scope.newsFeeds = newsService.getAllFeeds() || [];
+  
+  /////////////// NEWS FEEDS /////////////////////
+  $scope.newsfeeds = [];
+  newsService.getAllFeeds().then(function(results){
+    console.log('after wash', results);
+    $scope.newsfeeds = results;
+  });
 
+  //////////// AUTHENTICATION ////////////////////
+  $scope.user = {};
   $scope.signinshow = function() {
     $scope.error = '';
     $mdDialog.show({

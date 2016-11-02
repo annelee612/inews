@@ -10,6 +10,7 @@
     <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
 </head>
 <body ng-app='inews' ng-controller="appCtrl" ng-cloak>
+
   <div class='navbar'>
     <img class='logo' src='./assets/logo.png' />
     <div class='loginbox'>
@@ -26,6 +27,25 @@
     <p>{{error}}</p>
   </div>
 
+  <div ng-repeat="newsfeed in newsfeeds">
+    <div layout='row' layout-xs="column" layout-margin id='LocalNews'>
+    <div flex>
+      <h2>Local News</h2>
+      <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isLocNewsLoading'>
+        <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
+      </div>
+      <md-card class="md-padding" md-theme="light-green" ng-repeat='news in localnews | limitTo:lim1' ng-show='!isLocNewsLoading'>
+        <a ng-href="{{ news.url}}">
+          <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
+          <span class="md-headline">{{ news.name}}</span>
+        </a>
+        <span class="md-subhead">{{ news.description}}</span>
+        <span class="md-subhead">{{ news.datePublished}}</span>
+      </md-card>
+      <md-button ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</md-button>
+    </div>
+    </div>
+  </div>
 <!--
   <div layout='row' layout-xs="column" layout-margin ng-controller='localNewsController' id='LocalNews'>
     <div flex>
