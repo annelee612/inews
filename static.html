@@ -53,8 +53,9 @@
             <div class='text'>Mon</div>
           </div>
         </div>
-        <div class='arrow-weather'></div>
-      </div>
+          <button class='see-more' onClick="javascript:toggle();">See More</button>
+<!--         <div class='arrow-weather'></div>
+ -->      </div>
               
       <div class='card-news'>Election 2016
         <div class='setting'></div>
@@ -64,8 +65,14 @@
         <div class='card-title'>Clinton wins election</div>
         <div class='card-byline'>San Francisco, CA</div>
         <div class='card-details-news'>Clinton wins historic election. First female president of the U.S. Beating Donald Trump. Clinton wins historic election. First female president of the U.S. Beating Donald Trump.</div>
-        <div class='arrow-news'></div>
-      </div>
+        <button class='see-more-news' href='javascript:toggle('moreContent', 'see-more-news');'>See More</button>
+<!--         <div class='arrow-news'></div>
+ -->  <div style='clear:both;'></div>
+      </div id='contentDiv'> 
+        <div id='moreContent' style='display: block;'>Sample sample</div>
+      <div>
+        
+    </div>
 
       <div class='card-events'>Events
         <div class='setting'></div>
@@ -82,9 +89,25 @@
           <div class='event-name'>Hackathon</div>
           <div class='event-text'>9pm 0.5 mi</div>
         </div>
-        <div class='arrow-events'></div>
-      </div>
+         <button class='see-more-events'>See More</button>
+
+<!--         <div class='arrow-events' onClick=''></div>
+ -->      </div>
     </div>
+    <script language='javascript'>
+      function toggle(showHideDiv, switchTextDiv) {
+        var ele = document.getElementById(showHideDiv);
+        var text = document.getElementById(switchTextDiv);
+        if(ele.style.display == "block") {
+          ele.style.display = "none";
+          text.innerHTML = "restore";
+        }
+        else {
+          ele.style.display = "block";
+          text.innerHTML = "collapse";
+        }
+      }
+    </script>
     <footer class='footer'>
 
     </footer>
