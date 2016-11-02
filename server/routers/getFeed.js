@@ -30,6 +30,7 @@ router.route('/:id').put(function(req, res) {
     if (!result) return res.json({message:'No such feed'}); // TODO: add authentication here in production.
     result.title = req.body.title || result.title;
     result.order = req.body.order || result.order;
+    result.color = req.body.color || result.color;
     result.id = req.body.title.toLowerCase().replace(/ /g, '-') || result.title;
     result.save().then(function(feed) {
       feed.refresh().then(modifiedFeed => res.json(modifiedFeed));
