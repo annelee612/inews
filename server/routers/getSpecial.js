@@ -7,6 +7,8 @@ var WEATHER_API_KEY = require('../config.js').WEATHER_API_KEY;
 
 var router = express.Router();
 
+// next up: delete newsfeed, and meetup feed. then finished backend
+
 router.route('/localnews').get(function(req, res) {
   if (!req.query.lat || !req.query.lon) return res.json({message: 'You must include lat and lon as query parameters'});
   var options = {

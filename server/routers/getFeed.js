@@ -20,6 +20,12 @@ router.route('/').post(function(req, res) {
   });
 });
 
+router.route('/:id').delete(function(req, res) {
+  Feed.remove({id: req.params.id}).then((result) => {
+    if (result.result.n === 0 || result.result.ok != 1) res.json({message:'No such feed'}); else res.json({message:'Feed deleted'});
+  });
+});
+
 router.route('/:id').get(function(req, res) {
   // enable the following line to restrict this route to logged-in users only
   // if (!req.user) return res.json({message: 'You need to be logged in to view feeds'});
