@@ -41,16 +41,28 @@ router.route('/localnews').get(function(req, res) {
 });
 
 router.route('/weather').get(function(req, res) {
+  if (!req.query.lat || !req.query.lon) return res.json({message: 'You must include lat and lon as query parameters'});
   var options = {
     method: 'GET',
-    url: 'https://api.wunderground.com/api/'+WEATHER_API_KEY+'/conditions/q/CA/San_Francisco.json',
+    url: 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + req.query.lat + '&lon=' + req.query.lon,
     headers: {
           'User-Agent': 'iNews Project 0.0.2'
       }
   };
+  // transform geo data to address usable by weather underground using wu's autocomplete api.
   request(options).then(content => {
-    console.log(content);
-    res.json({id:'123', weatherdata: {current: 'sunny'}, healthWarning: 'I dont know how the API data will really look like yet'});
+    content = JSON.parse(content);
+    console.log(content.address.postcode);
+    request({url:'http://autocomplete.wunderground.com/aq?query='+content.address.postcode+'&c=US'}).then(resp => {
+      resp = JSON.parse(resp);
+      request({url:'https://api.wunderground.com/api/'+WEATHER_API_KEY+'/conditions/'+resp.RESULTS[0].l+'.json', headers: {'User-Agent': 'iNews Project 0.0.2' }}).then(content => {
+        var weather = {current: JSON.parse(content)};
+        request({url:'https://api.wunderground.com/api/'+WEATHER_API_KEY+'/forecast/'+resp.RESULTS[0].l+'.json', headers: {'User-Agent': 'iNews Project 0.0.2' }}).then(forecast => {
+          weather.forecast = JSON.parse(forecast);
+          res.json(weather);
+        });
+      });
+    });
   });
 });
 
