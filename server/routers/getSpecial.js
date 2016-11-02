@@ -56,7 +56,8 @@ router.route('/weather').get(function(req, res) {
     request({url:'http://autocomplete.wunderground.com/aq?query='+content.address.postcode+'&c=US'}).then(resp => {
       resp = JSON.parse(resp);
       request({url:'https://api.wunderground.com/api/'+WEATHER_API_KEY+'/conditions/'+resp.RESULTS[0].l+'.json', headers: {'User-Agent': 'iNews Project 0.0.2' }}).then(content => {
-        var weather = {current: JSON.parse(content)};
+        var content = JSON.parse(content);
+        var weather = {title: 'Weather for '+content.current_observation.display_location.full, color: '#FFDF00', current: content};
         request({url:'https://api.wunderground.com/api/'+WEATHER_API_KEY+'/forecast/'+resp.RESULTS[0].l+'.json', headers: {'User-Agent': 'iNews Project 0.0.2' }}).then(forecast => {
           weather.forecast = JSON.parse(forecast);
           res.json(weather);
