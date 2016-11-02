@@ -61,8 +61,9 @@ This app is great for people traveling who want quick access to location based n
 | GET  | /api/newsfeeds/:id | Newsfeed id | User | Returns a spesific newsfeed for a user |
 | PUT  | /api/newsfeeds | Newsfeed | User | Updates current newsfeed |
 | DELETE | /api/newsfeeds/:id | Newsfeed id | User | Deletes a users newsfeed |
-| GET  | /api/weather | ?lat&lon | Anonymous | Returns current locations weather |
-| GET  | /api/localnews | ?lat&lon | Anonymous | Returns local news for the user |
+| GET  | /api/weather | ?lat&lon | Anonymous | Returns current weather and forecast for (lat,lon) |
+| GET  | /api/localnews | ?lat&lon | Anonymous | Returns local news for (lat,lon) |
+| GET  | /api/meetups | | User | Returns recommended meetups for the user |
 
 ### Installing Dependencies
 

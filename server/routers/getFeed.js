@@ -25,6 +25,17 @@ router.route('/:id').delete(function(req, res) {
     if (result.result.n === 0 || result.result.ok != 1) res.json({message:'No such feed'}); else res.json({message:'Feed deleted'});
   });
 });
+router.route('/:id').put(function(req, res) {
+  Feed.findOne({id: req.params.id}).then((result) => {
+    if (!result) return res.json({message:'No such feed'}); // TODO: add authentication here in production.
+    result.title = req.body.title || result.title;
+    result.order = req.body.order || result.order;
+    result.id = req.body.title.toLowerCase().replace(/ /g, '-') || result.title;
+    result.save().then(function(feed) {
+      feed.refresh().then(modifiedFeed => res.json(modifiedFeed));
+    });
+  });
+});
 
 router.route('/:id').get(function(req, res) {
   // enable the following line to restrict this route to logged-in users only
