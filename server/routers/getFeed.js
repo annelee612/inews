@@ -7,10 +7,12 @@ var API_KEY = require('../config.js').API_KEY;
 var router = express.Router();
 
 router.route('/').post(function(req, res) {
+  // enable the following line to restrict this route to logged-in users only
+  // if (!req.user) return res.json({message: 'You need to be logged in to create a feed'});
   let newFeed = new Feed();
   newFeed.title = req.body.title;
   newFeed.userId = req.user ? req.user.username : 't'; // default username for testing only
-  newFeed.color = '#3366ff';
+  newFeed.color = req.body.color || '#3366ff';
   newFeed.order = 1;
   newFeed.id = newFeed.title.toLowerCase().replace(/ /g, '-');
   newFeed.save().then(function(feed) {
