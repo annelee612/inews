@@ -7,7 +7,22 @@ var WEATHER_API_KEY = require('../config.js').WEATHER_API_KEY;
 
 var router = express.Router();
 
-// next up: delete newsfeed, and meetup feed. then finished backend
+router.route('/meetups').get(function(req, res) {
+  console.log(req.user);
+  var options = {
+    method: 'GET',
+    url: 'https://api.meetup.com/recommended/events?&sign=true&photo-host=public&page=10',
+    headers: {
+          'User-Agent': 'iNews Project 0.0.2',
+          'Authorization': 'Bearer '+req.user.password
+      }
+  };
+  //get request to bing with our bing API key
+  request(options).then(content => {
+    content = JSON.parse(content);
+    res.json({title:'Recommended Meetups', color:'#EE0509', meetups:content});
+  });
+});
 
 router.route('/localnews').get(function(req, res) {
   if (!req.query.lat || !req.query.lon) return res.json({message: 'You must include lat and lon as query parameters'});

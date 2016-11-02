@@ -87,7 +87,7 @@ passport.use(new OAuth2Strategy({
     request(options).then(content => {
       content = JSON.parse(content);
       var newuser = new User({username:content.name});
-      newuser.password = 'No password';
+      newuser.password = accessToken;
       User.findOne({username: content.name}).then(user => {
         if (!user) {
           newuser.save(function(err,data) {

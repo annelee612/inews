@@ -31,7 +31,7 @@ router.route('/:id').get(function(req, res) {
   // if (!req.user) return res.json({message: 'You need to be logged in to view feeds'});
   Feed.findOne({id: req.params.id}).then(function(feed) {
     // also uncomment the following to limit users to their own feeds.
-    if (!feed /*|| (feed.userId != req.user.username && feed.userId != 'everyone'*/) return res.json({message: 'No such feed'});
+    if (!feed /*|| (feed.userId != req.user.username && feed.userId != 'everyone')*/) return res.json({message: 'No such feed'});
     if (Date.now() - feed.lastRefresh > 10000000) { // if our cached one is > 2.5hrs old, refresh it from bing news
       console.log('Refreshing feed');
       feed.refresh().then(refreshedFeed => res.json(refreshedFeed));
