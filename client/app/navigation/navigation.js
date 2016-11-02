@@ -2,8 +2,13 @@
 
 angular.module('inews.navigation', [])
 
-.controller('navController', function($scope, $mdDialog, AuthenticationService, $window) {
+.controller('navController', function($scope, $mdDialog, AuthenticationService, $window, $location) {
+
   $scope.user = {};
+
+  $scope.meetupshow = function() {
+    $window.open('/auth');
+  };
 
   $scope.signinshow = function() {
     $scope.error = '';
@@ -78,6 +83,14 @@ angular.module('inews.navigation', [])
   };
 
   $scope.isAuth = function() {
+    //console.log($location, $location.search());
+    if ($location.absUrl().indexOf('user') !== -1) {
+      //let queryString = '{"user"'+$location.absUrl().substr($location.absUrl().indexOf('user')+4, $location.absUrl().length).replace(/=/g,':').replace(/%22/g,'"').replace(/%7B/g,'{').replace(/%7D/g,'}') + '}';
+      //let user = JSON.parse(queryString);
+      let user = $location.search().user;
+      $window.localStorage.setItem('com.inews.user',JSON.stringify(user));
+      $location.search('');
+    }
     return AuthenticationService.isAuth();
   };
 });

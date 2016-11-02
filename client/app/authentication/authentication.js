@@ -27,6 +27,7 @@ angular
   };
 
   $scope.isAuth = function() {
+
     return AuthenticationService.isAuth();
   };
 });

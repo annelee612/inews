@@ -10,10 +10,13 @@
         <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
     </head>
     <body ng-app='inews' ng-controller="navController" ng-cloak>
-
+      <base href="/">
       <div class='navbar'>
         <img class='logo' src='./assets/logo.png' />
         <div class='loginbox'>
+        <md-button style="background-image: url(http://comparegang.com/wp-content/uploads/2016/09/Meetup_Logo_2015-300x204.png); background-size: contain; background-repeat: no-repeat; padding-left: 4em;" ng-hide='isAuth()' ng-click="meetupshow($event)" class="md-raised">
+          Sign In With Meetup
+        </md-button>
         <md-button ng-hide='isAuth()' ng-click="signinshow($event)" class="md-raised">
           Sign In
         </md-button>
