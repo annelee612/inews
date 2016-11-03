@@ -169,7 +169,7 @@
 	}
 
 	.card-details-weather {
-		height: 6em;
+		height: 9em;
 		width: 72%;
 		float: right;
 		display: inline-block;
@@ -326,6 +326,7 @@
 		padding: 0.4em;
 		margin-top: 0.7em;
 		margin-right: 0.1em;
+		margin-bottom: 1em;
   }
   .text {
   	height: 1em;
@@ -407,12 +408,16 @@
   	border-color: #EA8644;
   }
 
+  #hidden-content {
+  	left: 34%;
+  }
+
   #hidden-content-news {
   	left: 34%;
   }
-  /*#hidden-content-events {
-  	left: 33.5%;
-  }*/
+  #hidden-content-events {
+  	left: 34%;
+  }
 
 
 }

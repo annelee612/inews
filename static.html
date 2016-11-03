@@ -51,11 +51,9 @@
           <div class='day-of-week'>
             <div class='text'>Mon</div>
           </div>
+          <button class='darkpurple see-more' onClick="javascript:toggle('hidden-content');">See More</button>
           
         </div>
-        <button class='darkpurple see-more' onClick="javascript:toggle('hidden-content');">See More</button>
-
-
 <!--         <div class='arrow-weather'></div>
  -->     <div id="hidden-content" style="max-height: 0em;        overflow: hidden; transition: all 1s ease-out; position: relative; display:inline-block;">
           <h1>MORE WEATHER</h1>
@@ -94,8 +92,9 @@
           <div class='event-text'>8:30pm 0.5 mi</div>
           <div class='event-name'>Hackathon</div>
           <div class='event-text'>9pm 0.5 mi</div>
+           <button class='orange see-more' onClick="javascript:toggle('hidden-content-events');">See More</button>
         </div>
-        <button class='orange see-more' onClick="javascript:toggle('hidden-content-events');">See More</button>
+       
 
         <div id="hidden-content-events" style="max-height: 0em; overflow: hidden; transition: all 1s ease-out; position: relative; display:inline-block;">
           <h1>MORE EVENTS</h1>
@@ -109,6 +108,7 @@
         var ele = document.getElementById(showHideDiv);
         if (ele.style.maxHeight==='0em') {
           ele.style.maxHeight = '10em';
+          ele.text = 'See Less'
         } else {
           ele.style.maxHeight = '0em';
         }
