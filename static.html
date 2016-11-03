@@ -55,7 +55,7 @@
         </div>
           
 <!--         <div class='arrow-weather'></div>
- -->      <div id="hidden-content" style="max-height: 0em;        overflow: hidden; transition: all 2s ease-out;        position: relative; display:inline-block;">
+ -->     <div id="hidden-content" style="max-height: 0em;        overflow: hidden; transition: all 1s ease-out;        position: relative; display:inline-block;">
           <h1>MORE WEATHER</h1>
           <h3>THE WEATHER IS HOT</h3>
         </div>
@@ -64,17 +64,17 @@
        <div class='card-news' style="display:inline-block; position: relative;">Election 2016
         <div class='setting'></div>
       </div>
-      <div class='card-news-content'>
+      <div class='card-news-content' style="height:auto; min-height:13.8em">
         <div class='card-img-news'></div>
         <div class='card-title'>Clinton wins election</div>
         <div class='card-byline'>San Francisco, CA</div>
         <div class='card-details-news'>Clinton wins historic election. First female president of the U.S. Beating Donald Trump. Clinton wins historic election. First female president of the U.S. Beating Donald Trump.</div>
-        <button class='see-more-news' href='javascript:toggle('moreContent', 'see-more-news');'>See More</button>
+        <button class='see-more-news' onClick="javascript:toggle('hidden-content-news');">See More</button>
 <!--         <div class='arrow-news'></div>
- -->  <div style='clear:both;'></div>
-      </div id='contentDiv'> 
-        <div id='moreContent' style='display: block;'>Sample sample</div>
-      <div>
+ -->    <div id="hidden-content-news" style="max-height: 0em       ; overflow: hidden; transition: all 1s ease-out;       position: relative; display:inline-block;">
+          <h1>MORE NEWS</h1>
+          <h3>DONALD TRUMP</h3>
+        </div>
         
     </div>
 
@@ -93,10 +93,14 @@
           <div class='event-name'>Hackathon</div>
           <div class='event-text'>9pm 0.5 mi</div>
         </div>
-         <button class='see-more-events'>See More</button>
+        <button class='see-more-events' onClick="javascript:toggle('hidden-content-events');">See More</button>
 
+        <div id="hidden-content-events" style="max-height: 0em; overflow: hidden; transition: all 1s ease-out; position: relative; display:inline-block;">
+          <h1>MORE EVENTS</h1>
+          <h3>MEETUP MEETUP</h3>
+        </div>
 <!--         <div class='arrow-events' onClick=''></div>
- -->      </div>
+ -->  </div>
     </div>
     <script language='javascript'>
       function toggle(showHideDiv) {        
