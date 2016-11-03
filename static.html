@@ -31,7 +31,7 @@
       <div class='card-weather'>Weather
         <div class='setting'></div>
       </div>
-      <div class='card-weather-content' style="height:auto; min-height:13em">
+      <div class='card-weather-content' style="height:auto;">
         <div class='card-img-weather'></div>
         <div class='card-title'>60 degrees now</div>
         <div class='card-byline'>San Francisco, CA</div>
@@ -51,11 +51,13 @@
           <div class='day-of-week'>
             <div class='text'>Mon</div>
           </div>
-          <button class='see-more' onClick="javascript:toggle('hidden-content');">See More</button>
-        </div>
           
+        </div>
+        <button class='darkpurple see-more' onClick="javascript:toggle('hidden-content');">See More</button>
+
+
 <!--         <div class='arrow-weather'></div>
- -->     <div id="hidden-content" style="max-height: 0em;        overflow: hidden; transition: all 1s ease-out;        position: relative; display:inline-block;">
+ -->     <div id="hidden-content" style="max-height: 0em;        overflow: hidden; transition: all 1s ease-out; position: relative; display:inline-block;">
           <h1>MORE WEATHER</h1>
           <h3>THE WEATHER IS HOT</h3>
         </div>
@@ -64,14 +66,14 @@
        <div class='card-news' style="display:inline-block; position: relative;">Election 2016
         <div class='setting'></div>
       </div>
-      <div class='card-news-content' style="height:auto; min-height:13.8em">
+      <div class='card-news-content' style="height:auto;">
         <div class='card-img-news'></div>
         <div class='card-title'>Clinton wins election</div>
         <div class='card-byline'>San Francisco, CA</div>
         <div class='card-details-news'>Clinton wins historic election. First female president of the U.S. Beating Donald Trump. Clinton wins historic election. First female president of the U.S. Beating Donald Trump.</div>
-        <button class='see-more-news' onClick="javascript:toggle('hidden-content-news');">See More</button>
+        <button class='lightpurple see-more' onClick="javascript:toggle('hidden-content-news');">See More</button>
 <!--         <div class='arrow-news'></div>
- -->    <div id="hidden-content-news" style="max-height: 0em       ; overflow: hidden; transition: all 1s ease-out;       position: relative; display:inline-block;">
+ -->    <div id="hidden-content-news" style="max-height: 0em; overflow: hidden; transition: all 1s ease-out;  position: relative; display:inline-block;">
           <h1>MORE NEWS</h1>
           <h3>DONALD TRUMP</h3>
         </div>
@@ -81,7 +83,7 @@
       <div class='card-events'>Events
         <div class='setting'></div>
       </div>
-      <div class='card-events-content' style="height:auto; min-height:13em">
+      <div class='card-events-content' style="height:auto;">
         <div class='card-img-events'></div>
         <div class='card-title'>San Francisco meetups</div>
         <div class='card-byline'>San Francisco, CA</div>
@@ -93,7 +95,7 @@
           <div class='event-name'>Hackathon</div>
           <div class='event-text'>9pm 0.5 mi</div>
         </div>
-        <button class='see-more-events' onClick="javascript:toggle('hidden-content-events');">See More</button>
+        <button class='orange see-more' onClick="javascript:toggle('hidden-content-events');">See More</button>
 
         <div id="hidden-content-events" style="max-height: 0em; overflow: hidden; transition: all 1s ease-out; position: relative; display:inline-block;">
           <h1>MORE EVENTS</h1>

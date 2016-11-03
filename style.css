@@ -1,5 +1,4 @@
 /*//use DP and use 14pt font for mobile buttons
-
 //shared styles*/
 
 @media(max-width: 700px) {
@@ -75,7 +74,6 @@
     margin-left: 0.2em;
 	}
 	/*.add-category:hover {
-
 	}*/
 
 	.add-category {
@@ -120,7 +118,6 @@
 		border-style: solid;
 		border-width: 1px;
 		border-color: #471B72;
-		height: 13em;
 		background-color: white;
 		margin-top: 0em;
 		margin-right: 2.8em;
@@ -138,8 +135,10 @@
 		display: inline-block;
 		z-index: -1;
 		float:left;
-		background-size: 100%;
+		background-size: cover;
 		margin-top: 2%;
+	  background-repeat: no-repeat;
+
 	}
 
 	.card-title {
@@ -173,6 +172,8 @@
 		height: 6em;
 		width: 72%;
 		float: right;
+		display: inline-block;
+		position: relative;
 	}
 
 
@@ -201,7 +202,6 @@
 		border-style: solid;
 		border-width: 1px;
 		border-color: #8A9AE2;
-		height: 13.8em;
 		background-color: white;
 		margin-top: 0em;
 		margin-right: 2.8em;
@@ -246,8 +246,10 @@
 		display: inline-block;
 		z-index: -1;
 		float:left;
-		background-size: 100%;
+		background-size: cover;
 		margin-top: 2%;
+	  background-repeat: no-repeat;
+
 	}
 
 	
@@ -277,13 +279,11 @@
 	}
 
 	.card-events-content {
-
     font-family: 'Cardo', serif;
 		font-size: 12pt;
 		border-style: solid;
 		border-width: 1px;
 		border-color: #EA8644;
-		height: 13em;
 		background-color: white;
 		margin-top: 0em;
 		margin-right: 2.8em;
@@ -291,18 +291,18 @@
     width: 91%;
     padding: 0.5%;
     box-sizing: border-box;
-
-	
   }
 
   .card-img-events {
-  	height: 45%;
-	  width: 28%;
+  	height: 7em;
+	  width: 8em;
 		background-image: url('./meetup.png');	
 		display: inline-block;
 		z-index: -1;
 		float:left;
+		background-size: cover;
 		background-size: 100%;
+		background-repeat: no-repeat;
 		margin-top: 8%;
   }
 
@@ -374,8 +374,8 @@
   }
 
   .see-more {
-		width: 30%;
-		height: 30%;
+		width: 10em;
+		height: 2em;
 		font-size: 12pt;
 		background-color: silver;
 		border-color: silver ;
@@ -384,56 +384,35 @@
     border-radius: 3px;
     color: #F4FFF8;
     text-align: center;
-    margin-top: 10%;
-    float: right;
-		left: 50%;   
+    display: inline-block;
+	  position: relative;
+	  left: calc(100% - 10em);
+	  margin-top: 5%;
   }
+  
 
-  .see-more-news {
-		width: 21.8%;
-		height: 30%;
-		font-size: 12pt;
-		background-color: silver;
-		border-color: silver ;
-		border: 0;
-    box-shadow:none;
-    border-radius: 3px;
-    color: #F4FFF8;
-    text-align: center;
-    left: 50%;
-    float: right;
-    margin-left: 20%;
-    margin-top: 5%;
-  }
-  .see-more-events {
-  	width: 18%;
-		height: 12%;
-		font-size: 12pt;
-		background-color: silver;
-		border-color: silver ;
-		border: 0;
-    box-shadow:none;
-    border-radius: 3px;
-    color: #F4FFF8;
-    text-align: center;
-    left: 50%;
-    float: right;
-    margin-top: 1.5%;
-    margin-left: 20%;
-
-  }
-  .see-more:hover {
+  .darkpurple.see-more:hover {
   	background-color: #471B72;
   	border-color: #471B72;
   } 
-  .see-more-news:hover {
+
+
+  .lightpurple.see-more:hover {
   	background-color: #8A9AE2;
   	border-color: #8A9AE2;
-  }
-  .see-more-events:hover {
+  } 
+
+  .orange.see-more:hover {
   	background-color: #EA8644;
   	border-color: #EA8644;
   }
+
+  #hidden-content-news {
+  	left: 34%;
+  }
+  /*#hidden-content-events {
+  	left: 33.5%;
+  }*/
 
 
 }
@@ -478,9 +457,7 @@
 	}
 
 /*	.card-weather
-
 	.card-news
-
 	.card-events*/
 
 
@@ -552,9 +529,7 @@
 	}
 
 /*	.card-weather
-
 	.card-news
-
 	.card-events*/
 
 
@@ -594,6 +569,4 @@
 	/*.card-img-news
 	.card-img-weather
   
-
 /*
-
