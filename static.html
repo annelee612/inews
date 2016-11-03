@@ -31,9 +31,8 @@
       <div class='card-weather'>Weather
         <div class='setting'></div>
       </div>
-      <div class='card-weather-content'>
-        <div class='card-img-weather'>
-        </div>
+      <div class='card-weather-content' style="height:auto; min-height:13em">
+        <div class='card-img-weather'></div>
         <div class='card-title'>60 degrees now</div>
         <div class='card-byline'>San Francisco, CA</div>
         <div class='card-details-weather'>
@@ -52,12 +51,17 @@
           <div class='day-of-week'>
             <div class='text'>Mon</div>
           </div>
+          <button class='see-more' onClick="javascript:toggle('hidden-content');">See More</button>
         </div>
-          <button class='see-more' onClick="javascript:toggle();">See More</button>
+          
 <!--         <div class='arrow-weather'></div>
- -->      </div>
-              
-      <div class='card-news'>Election 2016
+ -->      <div id="hidden-content" style="max-height: 0em;        overflow: hidden; transition: all 2s ease-out;        position: relative; display:inline-block;">
+          <h1>MORE WEATHER</h1>
+          <h3>THE WEATHER IS HOT</h3>
+        </div>
+      </div>
+ 
+       <div class='card-news' style="display:inline-block; position: relative;">Election 2016
         <div class='setting'></div>
       </div>
       <div class='card-news-content'>
@@ -95,16 +99,12 @@
  -->      </div>
     </div>
     <script language='javascript'>
-      function toggle(showHideDiv, switchTextDiv) {
+      function toggle(showHideDiv) {        
         var ele = document.getElementById(showHideDiv);
-        var text = document.getElementById(switchTextDiv);
-        if(ele.style.display == "block") {
-          ele.style.display = "none";
-          text.innerHTML = "restore";
-        }
-        else {
-          ele.style.display = "block";
-          text.innerHTML = "collapse";
+        if (ele.style.maxHeight==='0em') {
+          ele.style.maxHeight = '10em';
+        } else {
+          ele.style.maxHeight = '0em';
         }
       }
     </script>
