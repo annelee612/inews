@@ -1,0 +1,577 @@
+/*//use DP and use 14pt font for mobile buttons
+//shared styles*/
+
+@media(max-width: 700px) {
+	#hidden-content {
+	}
+  .navbar {
+		height: 3em;
+  }
+	.app-name {
+    font-family: 'Montserrat', sans-serif;
+		font-size: 32px;
+		color: #0D1321;
+		margin-top: 0.5em;
+	}
+	.user-status {
+		float: right;
+		width: 4.5em;
+		height: 2em;
+		margin-top: 1em;
+		margin-bottom: 0em;
+		padding: 0em;
+		border: 0;
+		box-shadow: none;
+		border-radius: 3px;
+		color: #F4FFF8;
+    font-family: 'Montserrat', sans-serif;
+	}
+	/*.user-status-alt {
+		text-align: right;
+		font-size: 10px;
+		margin-left: auto;
+		margin-right: 0em;
+	}*/
+	.user-categories {
+		height: 6.5em;
+		margin-left: 1em;
+		margin-top: 0.5em;
+	}
+	.category {
+		width: 22.5%;
+		height: 90%;
+		font-size: 16pt;
+		background-color: silver;
+		border-color: silver ;
+		border: 0;
+    box-shadow:none;
+    border-radius: 3px;
+    color: #F4FFF8;
+    padding: 0.2em;
+  }
+    
+
+	.category:hover {
+		background-color: #17B890;
+		border-color: #17B890;
+	}
+/*	.add-category {
+	  height: 1.75em;
+		width: 1.75em;
+	  size: 40pt;
+		background-color: silver;
+		border-color: silver;
+		border: 0;
+    box-shadow:none;
+    border-radius: 3px;
+    color: #F4FFF8;
+  /*  height: 1.75em;
+    width: 1.75em;
+    display: inline-block;
+    background-size: cover;
+    background-image: url('./plus-icon.png');
+    vertical-align: middle;
+    margin-left: 0.2em;
+	}
+	/*.add-category:hover {
+	}*/
+
+	.add-category {
+		width: 10em;
+		height: 90%;
+		margin: 0.1em;
+		font-size: 16pt;
+
+	}
+	.buttons {
+		height: 100%;
+	}
+
+	.footer {
+		height: 3em;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		font-size: 12px;
+	}
+
+	.card-weather {
+    height: 2.5em;
+		margin-top: 2em;
+		margin-right: 2.8em;
+		margin-left: 0.2em;
+		background-color: #471B72;
+		color: white;
+    font-family: 'Montserrat', sans-serif;
+		width: 91%;
+		font-size: 1em;
+		top: 50%;
+		vertical-align: middle;
+		box-sizing: border-box;
+		line-height: 2.5em;
+		text-indent: 0.5em
+	}
+
+	.card-weather-content {
+
+    font-family: 'Cardo', serif;
+		font-size: 12pt;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #471B72;
+		background-color: white;
+		margin-top: 0em;
+		margin-right: 2.8em;
+		margin-left: 0.2em;
+    width: 91%;
+    padding: 0.5%;
+    box-sizing: border-box;
+	
+  }
+
+	.card-img-weather {
+	  height: 8.5em;
+	  width: 8.5em;
+		background-image: url('./sunny.png');	
+		display: inline-block;
+		z-index: -1;
+		float:left;
+		background-size: cover;
+		margin-top: 2%;
+	  background-repeat: no-repeat;
+
+	}
+
+	.card-title {
+    font-family: 'Montserrat', sans-serif;
+		font-size: 16pt;
+		color: black;
+		display: inline-block;
+		width: 66%;
+		float: right;
+		margin-left: 5%;
+		margin-top: 2.5%;
+	}
+
+	.card-byline {
+    font-family: 'Montserrat', sans-serif;
+		font-size: 10pt;
+		float: right;
+		width: 66%;
+		margin-left: 1%;
+		margin-top: 0.5%;
+		margin-bottom: 0.5%;
+		font-style: italic;
+	}
+
+	.wrapper {
+		height: 12em;
+		width: 100%;
+	}
+
+	.card-details-weather {
+		height: 9em;
+		width: 72%;
+		float: right;
+		display: inline-block;
+		position: relative;
+	}
+
+
+
+	.card-news {
+    height: 2.5em;
+		margin-top: 2em;
+		margin-right: 2.8em;
+		margin-left: 0.2em;
+		background-color: #8A9AE2;
+		color: white;
+    font-family: 'Montserrat', sans-serif;
+    width: 91%;
+	  vertical-align: middle;
+	  box-sizing: border-box;
+	  line-height: 2.5em;
+	  text-indent: 0.5em;
+
+	}
+
+
+	.card-news-content {
+
+    font-family: 'Cardo', serif;
+		font-size: 12pt;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #8A9AE2;
+		background-color: white;
+		margin-top: 0em;
+		margin-right: 2.8em;
+		margin-left: 0.2em;
+    width: 91%;
+    padding: 0.5%;
+    box-sizing: border-box;
+	
+  }
+
+/*	.card-events {
+    height: 1.3em;
+		margin-top: 25em;
+		margin-right: 2.8em;
+		margin-left: 0.2em;
+		background-color: #EA8644;
+		color: white;
+		font-family: 'Roboto', sans-serif;
+		padding: 0.5em;
+	}*/
+
+	.option-button {
+		width: 4em;
+		height: 1.5em;
+	}
+
+	.card-details-news {
+    font-family: 'Cardo', serif;
+		font-size: 10pt;
+		margin-top: 1em;
+		margin-right: 1em;
+		margin-bottom: 1.5em;
+    font-style: normal;
+    width: 63%;
+    float: right;
+	}
+
+	.card-img-news {
+	  height: 8.5em;
+	  width: 8.5em;
+		background-image: url('./clinton.jpg');	
+		display: inline-block;
+		z-index: -1;
+		float:left;
+		background-size: cover;
+		margin-top: 2%;
+	  background-repeat: no-repeat;
+
+	}
+
+	
+	.card-details-events {
+		font-family: 'Cardo', serif;
+		font-size: 10pt;
+		width: 66%;
+		margin-left: 5%;
+		float: right;
+		margin-top: 2%;
+	}
+
+  .card-events {
+    height: 2.5em;
+		margin-top: 2em;
+		margin-right: 2.8em;
+		margin-left: 0.2em;
+		background-color: #EA8644;
+		color: white;
+		font-family: 'Roboto', sans-serif;
+		width: 91%;
+		font-size: 100%;
+	  vertical-align: middle;
+	  box-sizing: border-box;
+	  line-height: 2.5em;
+	  text-indent: 0.5em;
+	}
+
+	.card-events-content {
+    font-family: 'Cardo', serif;
+		font-size: 12pt;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #EA8644;
+		background-color: white;
+		margin-top: 0em;
+		margin-right: 2.8em;
+		margin-left: 0.2em;
+    width: 91%;
+    padding: 0.5%;
+    box-sizing: border-box;
+  }
+
+  .card-img-events {
+  	height: 7em;
+	  width: 8em;
+		background-image: url('./meetup.png');	
+		display: inline-block;
+		z-index: -1;
+		float:left;
+		background-size: cover;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		margin-top: 8%;
+  }
+
+	.setting {
+		background-image: url('./settings-5-24.png');
+		height: 1.5em;
+		width: 1.5em;
+		float: right;
+		z-index: -1;
+		vertical-align: center;
+		margin-top: 1.5%;
+		margin-right: 1%;
+	}
+  
+  .day-of-week {
+  	background-image: url('./sun.png');
+		height: 3.3em;
+		width: 3.3em;
+		z-index: -1;
+		float: right;
+		padding: 0.4em;
+		margin-top: 0.7em;
+		margin-right: 0.1em;
+		margin-bottom: 1em;
+  }
+  .text {
+  	height: 1em;
+  	width: 3.3em;
+  	margin-top: 5.5em;
+  	text-align: center;
+  	margin-left: 0.5em;
+  	font-size: 9pt;
+  }
+  .arrow-weather {
+  	background-image: url('./arrow-darkpurp.png');
+  	height: 2.5em;
+  	width: 3em;
+  	margin-left: 14em;
+  	margin-top: 9.8em;
+  	text-align: center;
+  }
+  .arrow-news {
+  	background-image: url('./arrow-lightpurp.png');
+  	height: 2.5em;
+  	width: 3em;
+  	margin-left: 14em;
+  	margin-top: 9.8em;  	
+  	text-align: center;
+  }
+  .arrow-events {
+  	background-image: url('./arrow-orange.png');
+  	height: 2.5em;
+  	width: 3em;
+  	margin-left: 14em;
+  	margin-top: 10.1em;
+  	text-align: center;
+
+  }
+  .event-text {
+  	font-style: italic;
+  	font-family: 'Cardo', serif;
+  	font-size: 9pt;
+  	margin-bottom: 0.2em;
+
+  }
+  .event-name {
+  	font-family: 'Cardo', serif;
+  	font-size: 9pt;
+  	font-weight: bolder;
+  }
+
+  .see-more {
+		width: 10em;
+		height: 2em;
+		font-size: 12pt;
+		background-color: silver;
+		border-color: silver ;
+		border: 0;
+    box-shadow:none;
+    border-radius: 3px;
+    color: #F4FFF8;
+    text-align: center;
+    display: inline-block;
+	  position: relative;
+	  left: calc(100% - 10em);
+	  margin-top: 5%;
+  }
+  
+
+  .darkpurple.see-more:hover {
+  	background-color: #471B72;
+  	border-color: #471B72;
+  } 
+
+
+  .lightpurple.see-more:hover {
+  	background-color: #8A9AE2;
+  	border-color: #8A9AE2;
+  } 
+
+  .orange.see-more:hover {
+  	background-color: #EA8644;
+  	border-color: #EA8644;
+  }
+
+  #hidden-content {
+  	left: 34%;
+  }
+
+  #hidden-content-news {
+  	left: 34%;
+  }
+  #hidden-content-events {
+  	left: 34%;
+  }
+
+
+}
+
+@media (min-width: 701px)
+   and (max-width: 1200px) {
+
+	.navbar {
+		height: 3em;
+  }
+	.app-name {
+		font-family: 'Roboto', sans-serif;
+		font-size: 26px;
+	}
+	.user-status {
+		float: right;
+		width: 4em;
+		height: 1.5em;
+
+	}
+	.user-status-alt {
+		float: right;
+		height: 0.5em;
+		font-size: 10px;
+	}
+	.user-categories {
+		height: 3em;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+	}
+	.footer {
+		height: 3em;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		font-size: 10px;
+	}
+
+	.card {
+		height: 25%;
+		margin-top: 2em;
+		margin-bottom: 1em;
+	}
+
+/*	.card-weather
+	.card-news
+	.card-events*/
+
+
+	.card-title {
+		font-family: 'Roboto', sans-serif;
+		font-size: 16pt;
+	}
+	.card-byline {
+		font-family: 'Roboto', sans-serif;
+		font-size: 12pt;
+	}
+
+	.option-button {
+		width: 4em;
+		height: 1.5em;
+	}
+
+	.card-details-news {
+		font-family: 'Lato', sans-serif;
+		font-size: 12pt;
+	}
+	.card-details-weather {
+		font-family: 'Lato', sans-serif;
+		font-size: 12pt;
+
+	}
+	.card-details-events {
+		font-family: 'Lato', sans-serif;
+		font-size: 12pt;
+
+	}
+}
+
+@media(min-width: 1201px) {
+
+	.navbar {
+		height: 3em;
+  }
+	.app-name {
+		font-family: 'Roboto', sans-serif;
+		font-size: 26px;
+	}
+	.user-status {
+		float: right;
+		width: 4em;
+		height: 1.5em;
+	}
+	.user-status-alt {
+		float: right;
+		height: 0.5em;
+		font-size: 10px;
+	}
+	.user-categories {
+		height: 3em;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+	}
+	.footer {
+		height: 3em;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		font-size: 10px;
+	}
+
+	.card {
+		height: 25%;
+		margin-top: 2em;
+		margin-bottom: 1em;
+	}
+
+/*	.card-weather
+	.card-news
+	.card-events*/
+
+
+	.card-title {
+		font-family: 'Roboto', sans-serif;
+		font-size: 18pt;
+	}
+	.card-byline {
+		font-family: 'Roboto', sans-serif;
+		font-size: 12pt;
+	}
+
+	.option-button {
+		width: 4em;
+		height: 1.5em;
+	}
+
+	.card-details-news {
+		font-family: 'Lato', sans-serif;
+		font-size: 12pt;
+
+	}
+	.card-details-weather {
+		font-family: 'Lato', sans-serif;
+		font-size: 12pt;
+
+	}
+	.card-details-events {
+		font-family: 'Lato', sans-serif;
+		font-size: 12pt;
+
+	}
+	.setting {
+
+	}
+}
+	/*.card-img-news
+	.card-img-weather
+  
+/*
