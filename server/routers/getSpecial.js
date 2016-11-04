@@ -69,11 +69,8 @@ router.route('/weather').get(function(req, res) {
   // transform geo data to address usable by weather underground using wu's autocomplete api.
   request(options).then(content => {
     content = JSON.parse(content);
-    console.log('current address postcode', content.address.postcode);
     request({url:'http://autocomplete.wunderground.com/aq?query='+content.address.postcode+'&c=US'}).then(resp => {
-      //TODO: sometimes I get resp=undefined
       resp = JSON.parse(resp);
-      console.log(resp);
       request({url:'https://api.wunderground.com/api/'+WEATHER_API_KEY+'/conditions/'+resp.RESULTS[0].l+'.json', headers: {'User-Agent': 'iNews Project 0.0.2' }}).then(content => {
         var content = JSON.parse(content);
         var weather = {title: 'Weather for '+content.current_observation.display_location.full, color: '#FFDF00', current: content};
