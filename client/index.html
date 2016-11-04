@@ -36,7 +36,11 @@
       <div style="padding-left: 1em; padding-right: 1em; border-bottom: 1px solid black; font-family: Roboto, 'Helvetica Neue', sans-serif; height: 2em; font-size: 1.4em; line-height: 2em">
         <span class="news-topic">News Topic 1 <i class="fa fa-times-circle" aria-hidden="true" style="cursor: pointer"></i></span>
         <span class="news-topic">News Topic 2 <i class="fa fa-times-circle" aria-hidden="true" style="cursor: pointer"></i></span>
-        <md-input id="new-topic" style="border: 1px solid black; min-width: 10em; type='text" placeholder="Add topic..."><label for='new-topic'>Add topic</label></span>
+        <md-input-container class="md-block" style="vertical-align: top; height: 2em; font-size: 0.8em; display: inline-block; margin-top: 0.4em;">
+          <label class="placeholder" style="line-height:1.1em">Add Topic...</label>
+          <input id="new-topic"></input>
+          <i class="fa fa-check-circle" style="display: flex; line-height: 1.4em;" aria-hidden="true" style="cursor: pointer"></i>
+        </md-input-container>
       </div>
       <div layout='row' layout-xs="column" layout-margin ng-controller='localNewsController' id='LocalNews'>
         <div flex>
