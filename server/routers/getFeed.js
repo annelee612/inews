@@ -60,7 +60,7 @@ router.route('/').get(function(req, res) {
       res.json(feeds.map(feed => feed.title));
     });
   } else {
-    res.json({feeds: ['Election', 'Liverpool', 'Tentacles', 'Robot Consciousness']});
+    res.json({feeds: ['election', 'liverpool', 'tentacles', 'robot_consciousness']});
   }
 });
 
