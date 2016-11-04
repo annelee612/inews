@@ -8,13 +8,15 @@
       <link rel="stylesheet" href="lib/angular-material/angular-material.css">
       <link rel='stylesheet' type='text/css' href='css/main.css'>
       <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Bitter:700" rel="stylesheet">
         <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
     </head>
     <body ng-app='inews' ng-controller="navController" ng-cloak>
       <base href="/">
-      <div class='navbar'>
-        <img class='logo' src='./assets/logo.png' />
-        <div class='loginbox'>
+      <div class='navbar' style="border-bottom: 1px solid black; height: 5em;">
+        <img class='logo' src='/assets/worldwide-location-24.jpg'></img>
+        <span style="font-size: 2em; line-height: 2.5em; font-weight: 700; font-family: 'Bitter', serif;">iNews</span>
+        <div class='loginbox' style="position: relative; top: 1em;">
         <md-button style="background-image: url(http://comparegang.com/wp-content/uploads/2016/09/Meetup_Logo_2015-300x204.png); background-size: contain; background-repeat: no-repeat; padding-left: 4em;" ng-hide='isAuth()' ng-click="meetupshow($event)" class="md-raised">
           Sign In With Meetup
         </md-button>
@@ -31,6 +33,11 @@
         <p>{{error}}</p>
       </div>
 
+      <div style="padding-left: 1em; padding-right: 1em; border-bottom: 1px solid black; font-family: Roboto, 'Helvetica Neue', sans-serif; height: 2em; font-size: 1.4em; line-height: 2em">
+        <span class="news-topic">News Topic 1 <i class="fa fa-times-circle" aria-hidden="true" style="cursor: pointer"></i></span>
+        <span class="news-topic">News Topic 2 <i class="fa fa-times-circle" aria-hidden="true" style="cursor: pointer"></i></span>
+        <md-input id="new-topic" style="border: 1px solid black; min-width: 10em; type='text" placeholder="Add topic..."><label for='new-topic'>Add topic</label></span>
+      </div>
       <div layout='row' layout-xs="column" layout-margin ng-controller='localNewsController' id='LocalNews'>
         <div flex>
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isLocNewsLoading'>
@@ -40,8 +47,8 @@
           <div style="border: 1px solid black">
             <div style="background-color:#8A9AE2; display: block; line-height: 3em;">
               <span style="margin-left: 1em; color: white; font-weight: 900;">Local News</span>
-              <i style="color: white; position: relative; left: calc(100% - 3em)" class="fa fa-cogs" aria-hidden="true"></i>
-              <md-button style="position: relative; min-width: 0; width: 1em; left: calc(100% - 1em); color: white;" ng-click='loadMore1()' aria-label="Show more or less"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></md-button>
+              <md-button style="position: relative; width: 2em; float:right; color: white;" ng-click='loadMore1()' aria-label="Show more or less"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></md-button>
+              <md-button style="position:relative; width:2em; float:right; color: white;" aria-label="Settings"><i class="fa fa-cogs" aria-hidden="true"></i></md-button>
             </div>
             <md-card class="md-padding" ng-repeat='news in localnews | limitTo:lim1' ng-show='!isLocNewsLoading' md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
               <md-card-title>
@@ -62,7 +69,7 @@
 
         </div>
 
-      
+
       </div>
 
       <div layout='row' layout-xs="column" layout-margin ng-controller='customNewsController' id='CustomNews'>
