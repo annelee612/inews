@@ -1,12 +1,12 @@
 <!doctype html>
 <head>
     <meta charset="utf-8">
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
-    <title>iNews - Local News for You</title>
+    <title>iNews</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- <meta name="description" content=""> -->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
   <link rel="stylesheet" href="lib/angular-material/angular-material.css">
-  <link rel='stylesheet' type='text/css' href='assets/css/main.css'>
+  <link rel='stylesheet' type='text/css' href='assets/css/style.css'>
     <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
 </head>
 <body ng-app='inews' ng-controller="appCtrl" ng-cloak>
@@ -27,6 +27,104 @@
     <p>{{error}}</p>
   </div>
 
+  <div class='body'>
+      <div class='buttons'>
+        <button class='category'>Tech</button>
+        <button class='category'>Election</button>
+        <button class='category'>Events</button>
+        <button class='category'>Weather</button>
+        <input class='add-category' placeholder="Add a new category"></input>
+      </div>
+      <!--this is for weather> -->
+      <div class='card-weather'>Weather
+        <div class='setting'></div>
+      </div>
+      <div class='card-weather-content' style="height:auto;">
+        <div class='card-img-weather'></div>
+        <div class='card-title'>60 degrees now</div>
+        <div class='card-byline'>San Francisco, CA</div>
+        <div class='card-details-weather'>
+          <div class='day-of-week'>
+            <div class='text'>Fri</div>
+          </div>
+          <div class='day-of-week'>
+            <div class='text'>Thu</div>
+          </div>
+          <div class='day-of-week'>
+            <div class='text'>Wed</div>
+          </div>
+          <div class='day-of-week'>
+            <div class='text'>Tue</div>
+          </div>
+          <div class='day-of-week'>
+            <div class='text'>Mon</div>
+          </div>
+          <button class='darkpurple see-more' onClick="javascript:toggle('hidden-content');">See More</button>
+          
+        </div>
+<!--         <div class='arrow-weather'></div>
+ -->     <div id="hidden-content" style="max-height: 0em;        overflow: hidden; transition: all 1s ease-out; position: relative; display:inline-block;">
+          <h1>MORE WEATHER</h1>
+          <h3>THE WEATHER IS HOT</h3>
+        </div>
+      </div>
+ 
+       <div class='card-news' style="display:inline-block; position: relative;">Election 2016
+        <div class='setting'></div>
+      </div>
+      <div class='card-news-content' style="height:auto;">
+        <div class='card-img-news'></div>
+        <div class='card-title'>Clinton wins election</div>
+        <div class='card-byline'>San Francisco, CA</div>
+        <div class='card-details-news'>Clinton wins historic election. First female president of the U.S. Beating Donald Trump. Clinton wins historic election. First female president of the U.S. Beating Donald Trump.</div>
+        <button class='lightpurple see-more' onClick="javascript:toggle('hidden-content-news');">See More</button>
+<!--         <div class='arrow-news'></div>
+ -->    <div id="hidden-content-news" style="max-height: 0em; overflow: hidden; transition: all 1s ease-out;  position: relative; display:inline-block;">
+          <h1>MORE NEWS</h1>
+          <h3>DONALD TRUMP</h3>
+        </div>
+        
+    </div>
+
+      <div class='card-events'>Events
+        <div class='setting'></div>
+      </div>
+      <div class='card-events-content' style="height:auto;">
+        <div class='card-img-events'></div>
+        <div class='card-title'>San Francisco meetups</div>
+        <div class='card-byline'>San Francisco, CA</div>
+        <div class='card-details-events'>
+          <div class='event-name'>Javascript meetup</div>
+          <div class='event-text'>8pm 0.5 mi</div>
+          <div class='event-name'>Adele</div>
+          <div class='event-text'>8:30pm 0.5 mi</div>
+          <div class='event-name'>Hackathon</div>
+          <div class='event-text'>9pm 0.5 mi</div>
+           <button class='orange see-more' onClick="javascript:toggle('hidden-content-events');">See More</button>
+        </div>
+       
+
+        <div id="hidden-content-events" style="max-height: 0em; overflow: hidden; transition: all 1s ease-out; position: relative; display:inline-block;">
+          <h1>MORE EVENTS</h1>
+          <h3>MEETUP MEETUP</h3>
+        </div>
+<!--         <div class='arrow-events' onClick=''></div>
+ -->  </div>
+    </div>
+
+    <script language='javascript'>
+      function toggle(showHideDiv) {        
+        var ele = document.getElementById(showHideDiv);
+        if (ele.style.maxHeight==='0em') {
+          ele.style.maxHeight = '10em';
+          ele.text = 'See Less'
+        } else {
+          ele.style.maxHeight = '0em';
+        }
+      }
+    </script>
+
+<!--
   <div ng-repeat="newsfeed in newsfeeds">
     <div layout='row' layout-xs="column" layout-margin id='LocalNews'>
     <div flex>

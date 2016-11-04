@@ -131,7 +131,7 @@
 	.card-img-weather {
 	  height: 8.5em;
 	  width: 8.5em;
-		background-image: url('./sunny.png');	
+		background-image: url('/assets/images/sunny.png');	
 		display: inline-block;
 		z-index: -1;
 		float:left;
@@ -242,7 +242,7 @@
 	.card-img-news {
 	  height: 8.5em;
 	  width: 8.5em;
-		background-image: url('./clinton.jpg');	
+		background-image: url('/assets/images/clinton.jpg');	
 		display: inline-block;
 		z-index: -1;
 		float:left;
@@ -296,7 +296,7 @@
   .card-img-events {
   	height: 7em;
 	  width: 8em;
-		background-image: url('./meetup.png');	
+		background-image: url('/assets/images/meetup.png');	
 		display: inline-block;
 		z-index: -1;
 		float:left;
@@ -307,7 +307,7 @@
   }
 
 	.setting {
-		background-image: url('./settings-5-24.png');
+		background-image: url('/assets/images/settings-5-24.png');
 		height: 1.5em;
 		width: 1.5em;
 		float: right;
@@ -318,7 +318,7 @@
 	}
   
   .day-of-week {
-  	background-image: url('./sun.png');
+  	background-image: url('/assets/images/sun.png');
 		height: 3.3em;
 		width: 3.3em;
 		z-index: -1;
@@ -337,7 +337,7 @@
   	font-size: 9pt;
   }
   .arrow-weather {
-  	background-image: url('./arrow-darkpurp.png');
+  	background-image: url('/assets/images/arrow-darkpurp.png');
   	height: 2.5em;
   	width: 3em;
   	margin-left: 14em;
@@ -345,7 +345,7 @@
   	text-align: center;
   }
   .arrow-news {
-  	background-image: url('./arrow-lightpurp.png');
+  	background-image: url('/assets/images/arrow-lightpurp.png');
   	height: 2.5em;
   	width: 3em;
   	margin-left: 14em;
@@ -353,7 +353,7 @@
   	text-align: center;
   }
   .arrow-events {
-  	background-image: url('./arrow-orange.png');
+  	background-image: url('/assets/images/arrow-orange.png');
   	height: 2.5em;
   	width: 3em;
   	margin-left: 14em;
