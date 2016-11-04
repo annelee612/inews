@@ -31,9 +31,10 @@ html {
   overflow: hidden;
 }
 .news-topic {
-  padding: 0.2em 1em 0.2em 1em;
+  padding: 0 1em;
   margin: 0.1em 0;
   background-color: #443939;
   color: white;
   border-radius: 3px;
+  display: inline-block;
 }

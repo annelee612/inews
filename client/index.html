@@ -33,13 +33,15 @@
         <p>{{error}}</p>
       </div>
 
-      <div style="padding-left: 1em; padding-right: 1em; border-bottom: 1px solid black; font-family: Roboto, 'Helvetica Neue', sans-serif; height: 2em; font-size: 1.4em; line-height: 2em">
+      <div style="padding-left: 1em; padding-right: 1em; border-bottom: 1px solid black; font-family: Roboto, 'Helvetica Neue', sans-serif; min-height: 2em; padding-top: 1em; font-size: 1.4em; line-height: 2em">
+        <span class="news-topic">News Topic 1 <i class="fa fa-times-circle" aria-hidden="true" style="cursor: pointer"></i></span>
+        <span class="news-topic">News Topic 1 <i class="fa fa-times-circle" aria-hidden="true" style="cursor: pointer"></i></span>
         <span class="news-topic">News Topic 1 <i class="fa fa-times-circle" aria-hidden="true" style="cursor: pointer"></i></span>
         <span class="news-topic">News Topic 2 <i class="fa fa-times-circle" aria-hidden="true" style="cursor: pointer"></i></span>
         <md-input-container class="md-block" style="vertical-align: top; height: 2em; font-size: 0.8em; display: inline-block; margin-top: 0.4em;">
-          <label class="placeholder" style="line-height:1.1em">Add Topic...</label>
+          <label class="placeholder" style="line-height:1.1em;">Add Topic...</label>
           <input id="new-topic"></input>
-          <i class="fa fa-check-circle" style="display: flex; line-height: 1.4em;" aria-hidden="true" style="cursor: pointer"></i>
+          <i class="fa fa-check-circle" style="display: flex; line-height: 1.4em; cursor: pointer;" aria-hidden="true" style="cursor: pointer"></i>
         </md-input-container>
       </div>
       <div layout='row' layout-xs="column" layout-margin ng-controller='localNewsController' id='LocalNews'>
@@ -58,6 +60,29 @@
               <md-card-title>
                 <md-card-title-text>
                   <span class="md-headline">{{news.name}}</span>
+                  <span class="md-subhead">{{news.description}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                  <div class="md-media-lg card-media" style="background-image:url({{news.image.thumbnail.contentUrl}})"></div>
+                </md-card-title-media>
+              </md-card-title>
+              <md-card-actions style="justify-content: space-between;" layout="row" layout-align="end center">
+                <md-button ng-disabled="true" style="float:left;" aria-label="date">{{news.datePublished | date:'HH:mm, MMM dd'}}</md-button>
+                <a href="{{news.url}}" target="_blank" style="color:inherit; text-decoration:none; margin-right:0.3em;"><md-button>Read Article</md-button></a>
+              </md-card-actions>
+            </md-card>
+          </div>
+
+          <div style="border: 1px solid black; margin-top: 1em;">
+            <div style="background-color:#EA8644; display: block; line-height: 3em;">
+              <span style="margin-left: 1em; color: white; font-weight: 900;">Weather</span>
+              <md-button style="position: relative; width: 2em; float:right; color: white;" ng-click='loadMore1()' aria-label="Show more or less"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></md-button>
+              <md-button style="position:relative; width:2em; float:right; color: white;" aria-label="Settings"><i class="fa fa-cogs" aria-hidden="true"></i></md-button>
+            </div>
+            <md-card class="md-padding" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{news.name}}</span>
                   <span class="md-subhead">{{news.description}}{{ news.datePublished}}</span>
                 </md-card-title-text>
                 <md-card-title-media>
@@ -65,7 +90,7 @@
                 </md-card-title-media>
               </md-card-title>
               <md-card-actions layout="row" layout-align="end center">
-                <md-button>{{news.url}}</md-button>
+                <md-button></md-button>
                 <md-button>Action 2</md-button>
               </md-card-actions>
             </md-card>
@@ -76,85 +101,7 @@
 
       </div>
 
-      <div layout='row' layout-xs="column" layout-margin ng-controller='customNewsController' id='CustomNews'>
-        <div flex>
-          <h2>{{city1 || 'Custom 1'}} News</h2>
-          <form ng-show='isAuth()'>
-            <input class='inputfield' ng-model='city1' type="text" name="city1">
-            <md-button ng-click='initializeCustom1(city1)' type="submit">Save</md-button>
-          </form>
-          <br>
-          <p ng-hide='isAuth()'>Sign in to save your custom news here!</p>
-          <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isCustom1newsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
-          </div>
-          <md-card class="md-padding" md-theme="light-orange" ng-show='isAuth() && !isCustom1newsLoading' ng-repeat='news in custom1news | limitTo:lim1'>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <span class="md-headline">{{ news.name}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.datePublished}}</span>
-          </md-card>
-          <md-button ng-show='isAuth()' ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</md-button>
-        </div>
 
-        <div flex>
-          <h2>{{city2 || 'Custom 2'}} News</h2>
-          <form ng-show='isAuth()'>
-            <input class='inputfield' ng-model='city2' type="text" name="city2">
-            <md-button ng-click='initializeCustom2(city2)' type="submit">Save</md-button>
-          </form>
-          <br>
-          <p ng-hide='isAuth()'>Here is another! Sign up for a free account now!</p>
-          <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isCustom2newsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
-          </div>
-          <md-card class="md-padding" md-theme="light-orange" ng-show='isAuth() && !isCustom2newsLoading' ng-repeat='news in custom2news | limitTo:lim2'>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <span class="md-headline">{{ news.name}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.datePublished}}</span>
-          </md-card>
-          <md-button ng-show='isAuth()' ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</md-button>
-        </div>
-      </div>
-
-      <div layout='row' layout-xs="column" layout-margin ng-controller='defaultNewsController' id='USNews'>
-        <div flex>
-          <h2>U.S. News</h2>
-          <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isUSNewsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
-          </div>
-          <md-card class="md-padding" md-theme="light-blue" ng-repeat='news in usNews | limitTo:lim1' ng-show='!isUSNewsLoading' md-theme-watch>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.urlToImage}}'>
-              <span class="md-headline">{{ news.title}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.publishedAt}}</span>
-          </md-card>
-          <md-button ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</md-button>
-        </div>
-
-        <div flex>
-          <h2>World News</h2>
-          <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isWorldNewsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
-          </div>
-          <md-card class="md-padding" md-theme="light-blue" ng-repeat='news in worldNews | limitTo:lim2' ng-show='!isWorldNewsLoading'>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.urlToImage}}'>
-              <span class="md-headline">{{ news.title}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.publishedAt}}</span>
-          </md-card>
-          <md-button ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</md-button>
-        </div>
-      </div>
 
       <div style="visibility: hidden">
         <div class="md-dialog-container" id="signInDialog">
