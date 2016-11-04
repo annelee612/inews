@@ -15,11 +15,13 @@ angular.module('inews', [
   
   /////////////// NEWS FEEDS /////////////////////
   $scope.newsfeeds = [];
+  $scope.weather = {};
   newsService.getAllFeeds().then(function(results){
-    console.log('after wash', results);
-    $scope.newsfeeds = results; 
+    console.log('results from getAllFeeds', results);
+    $scope.newsfeeds = results.news;
+    $scope.weather = results.weather;
   }).catch(function(error) {
-    console.log(error);
+    console.error(error)
   });
 
   $scope.meetupshow = function() {

@@ -19,28 +19,48 @@ angular.module('inews.services.newsService', [])
       });
     };
 
-    getGeoLocation().then(function(position) {
+    $q.all([httpService.get('/api/newsfeeds'),
+            getGeoLocation()]).then(function(results) {
+      var promises = [];
       
-      var lat = position.coords.latitude;
-      var lon = position.coords.longitude;
-      
-      return $q.all([httpService.get('/api/newsfeeds'),
-                     httpService.get('/api/weather?lat=' + lat + '&lon=' + lon),
-                     httpService.get('/api/localnews?lat=' + lat + '&lon=' + lon)]);
-    }).then(function(results) {
-      //TODO: clean the results array
-      console.log('brefore wash', results);
-      var newsfeeds = [];
-      
-      for (var i = 0; i < results.length; i++) {
-        newsfeeds.push(results[i].data);
+      //Location
+      if (results[1]) {
+        var lat = results[1].coords.latitude;
+        var lon = results[1].coords.longitude;
+
+        promises.push(httpService.get('/api/weather?lat=' + lat + '&lon=' + lon));
+        promises.push(httpService.get('/api/localnews?lat=' + lat + '&lon=' + lon));
       }
-      deferred.resolve(newsfeeds);
-    }).catch(function(error) {
-      console.error(error);
-      deferred.reject();
-    });
+
+      if (results[0].data.feeds.length > 0) {
+        var feeds = results[0].data.feeds;
+        for (var i = 0; i < feeds.length; i++) {
+          promises.push(httpService.get('/api/newsfeeds/' + feeds[i]));
+        }
+      }
+
+      return $q.all(promises);
+    }).then(function(results) {
+      var weatherAndNews = {
+        weather: results[0].data,
+        news: []
+      }
+
+      for (var i = 1; i < results.length; i++) {
+        if (results[i].data.newsItems) {
+          var newsItems = JSON.parse(results[i].data.newsItems[0]);
+          results[i].data.newsItems = newsItems;
+          weatherAndNews.news.push(results[i].data);  
+        } else {
+          console.log('no such feed');
+        }
+      }
     
+      deferred.resolve(weatherAndNews);
+    }).catch(function(error) {
+      deferred.reject(error);      
+    });
+
     return deferred.promise;
   };
 
@@ -70,7 +90,14 @@ angular.module('inews.services.newsService', [])
     return {};
   };
 
+  var test = function() {
+    return $q(function (resolve, reject) {
+      resolve('success');
+    });
+  };
+
   return {
+    test: test,
     getAllFeeds: getAllFeeds,
     getNewsForFeed: getNewsForFeed,
     createFeed: createFeed,
