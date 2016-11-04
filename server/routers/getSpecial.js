@@ -3,11 +3,29 @@ var Feed = require('../models/Feed.js');
 const request = require('request-promise');
 
 //local files
-var API_KEY = require('../config.js').API_KEY;
+var WEATHER_API_KEY = require('../config.js').WEATHER_API_KEY;
 
 var router = express.Router();
 
+router.route('/meetups').get(function(req, res) {
+  console.log(req.user);
+  var options = {
+    method: 'GET',
+    url: 'https://api.meetup.com/recommended/events?&sign=true&photo-host=public&page=10',
+    headers: {
+          'User-Agent': 'iNews Project 0.0.2',
+          'Authorization': 'Bearer '+req.user.password
+      }
+  };
+  //get request to bing with our bing API key
+  request(options).then(content => {
+    content = JSON.parse(content);
+    res.json({title:'Recommended Meetups', color:'#EE0509', meetups:content});
+  });
+});
+
 router.route('/localnews').get(function(req, res) {
+  if (!req.query.lat || !req.query.lon) return res.json({message: 'You must include lat and lon as query parameters'});
   var options = {
     method: 'GET',
     url: 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + req.query.lat + '&lon=' + req.query.lon,
@@ -40,7 +58,30 @@ router.route('/localnews').get(function(req, res) {
 });
 
 router.route('/weather').get(function(req, res) {
-  res.json({id:'123', weatherdata: {current: 'sunny'}, healthWarning: 'I dont know how the API data will really look like yet'});
+  if (!req.query.lat || !req.query.lon) return res.json({message: 'You must include lat and lon as query parameters'});
+  var options = {
+    method: 'GET',
+    url: 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + req.query.lat + '&lon=' + req.query.lon,
+    headers: {
+          'User-Agent': 'iNews Project 0.0.2'
+      }
+  };
+  // transform geo data to address usable by weather underground using wu's autocomplete api.
+  request(options).then(content => {
+    content = JSON.parse(content);
+    console.log(content.address.postcode);
+    request({url:'http://autocomplete.wunderground.com/aq?query='+content.address.postcode+'&c=US'}).then(resp => {
+      resp = JSON.parse(resp);
+      request({url:'https://api.wunderground.com/api/'+WEATHER_API_KEY+'/conditions/'+resp.RESULTS[0].l+'.json', headers: {'User-Agent': 'iNews Project 0.0.2' }}).then(content => {
+        var content = JSON.parse(content);
+        var weather = {title: 'Weather for '+content.current_observation.display_location.full, color: '#FFDF00', current: content};
+        request({url:'https://api.wunderground.com/api/'+WEATHER_API_KEY+'/forecast/'+resp.RESULTS[0].l+'.json', headers: {'User-Agent': 'iNews Project 0.0.2' }}).then(forecast => {
+          weather.forecast = JSON.parse(forecast);
+          res.json(weather);
+        });
+      });
+    });
+  });
 });
 
 module.exports = router;
