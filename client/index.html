@@ -7,6 +7,7 @@
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
       <link rel="stylesheet" href="lib/angular-material/angular-material.css">
       <link rel='stylesheet' type='text/css' href='css/main.css'>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
     </head>
     <body ng-app='inews' ng-controller="navController" ng-cloak>
@@ -32,43 +33,36 @@
 
       <div layout='row' layout-xs="column" layout-margin ng-controller='localNewsController' id='LocalNews'>
         <div flex>
-          <h2>Local News</h2>
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isLocNewsLoading'>
             <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
           </div>
-          <md-card class="md-padding" md-theme="light-green" ng-repeat='news in localnews | limitTo:lim1' ng-show='!isLocNewsLoading'>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <span class="md-headline">{{ news.name}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.datePublished}}</span>
-          </md-card>
-          <md-button ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</md-button>
-        </div>
 
-        <div flex>
-          <h2>News Search</h2>
-          <form ng-show='isAuth()'>
-            <input class='inputfield' ng-model='search' type="text" name="search">
-            <md-button ng-click='initializeSearch(search)' type="submit">Search</md-button>
-          </form>
-          <br>
-          <p ng-hide='isAuth()'>Sign in to use the search feature!</p>
-
-          <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isSearchNewsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
+          <div style="border: 1px solid black">
+            <div style="background-color:#8A9AE2; display: block; line-height: 3em;">
+              <span style="margin-left: 1em; color: white; font-weight: 900;">Local News</span>
+              <i style="color: white; position: relative; left: calc(100% - 3em)" class="fa fa-cogs" aria-hidden="true"></i>
+              <md-button style="position: relative; min-width: 0; width: 1em; left: calc(100% - 1em); color: white;" ng-click='loadMore1()' aria-label="Show more or less"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></md-button>
+            </div>
+            <md-card class="md-padding" ng-repeat='news in localnews | limitTo:lim1' ng-show='!isLocNewsLoading' md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{news.name}}</span>
+                  <span class="md-subhead">{{news.description}}{{ news.datePublished}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                  <div class="md-media-lg card-media" style="background-image:url({{news.image.thumbnail.contentUrl}})"></div>
+                </md-card-title-media>
+              </md-card-title>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button>{{news.url}}</md-button>
+                <md-button>Action 2</md-button>
+              </md-card-actions>
+            </md-card>
           </div>
-          <md-card class="md-padding" md-theme="light-green" ng-repeat='news in searchnews | limitTo:lim2' ng-show='!isSearchNewsLoading'>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <span class="md-headline">{{ news.name}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.datePublished}}</span>
-          </md-card>
-          <md-button ng-show='isAuth()' ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</md-button>
+
         </div>
+
+      
       </div>
 
       <div layout='row' layout-xs="column" layout-margin ng-controller='customNewsController' id='CustomNews'>
