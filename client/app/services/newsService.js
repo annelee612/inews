@@ -12,7 +12,7 @@ angular.module('inews.services.newsService', [])
 
   var getAllFeeds = function() {
     var deferred = $q.defer();
-
+    
     var getGeoLocation = function(options) {
       return $q(function (resolve, reject) {
         navigator.geolocation.getCurrentPosition(resolve, reject, options);
@@ -20,6 +20,7 @@ angular.module('inews.services.newsService', [])
     };
 
     getGeoLocation().then(function(position) {
+      
       var lat = position.coords.latitude;
       var lon = position.coords.longitude;
       

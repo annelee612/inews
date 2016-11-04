@@ -7,21 +7,24 @@ angular.module('inews', [
   'inews.services.newsService'
 ])
 .config(function($mdThemingProvider, $locationProvider) {
-  $mdThemingProvider.theme('light-blue').backgroundPalette('blue');
-  $mdThemingProvider.theme('light-orange').backgroundPalette('orange');
-  $mdThemingProvider.theme('light-grey').backgroundPalette('grey');
-  $mdThemingProvider.theme('light-green').backgroundPalette('green');
+  $locationProvider.html5Mode(true);
 })
 
-.controller('appCtrl', function($scope, $mdDialog, AuthenticationService, newsService, $window) {
-  $locationProvider.html5Mode(true);
+.controller('appCtrl', function($scope, $mdDialog, $location,
+                                AuthenticationService, newsService, $window) {
   
   /////////////// NEWS FEEDS /////////////////////
   $scope.newsfeeds = [];
   newsService.getAllFeeds().then(function(results){
     console.log('after wash', results);
-    $scope.newsfeeds = results;
+    $scope.newsfeeds = results; 
+  }).catch(function(error) {
+    console.log(error);
   });
+
+  $scope.meetupshow = function() {
+    $window.open('/auth');
+  };
 
   //////////// AUTHENTICATION ////////////////////
   $scope.user = {};
@@ -98,7 +101,15 @@ angular.module('inews', [
   };
 
   $scope.isAuth = function() {
+    //console.log($location, $location.search());
+    if ($location.absUrl().indexOf('user') !== -1) {
+      //let queryString = '{"user"'+$location.absUrl().substr($location.absUrl().indexOf('user')+4, $location.absUrl().length).replace(/=/g,':').replace(/%22/g,'"').replace(/%7B/g,'{').replace(/%7D/g,'}') + '}';
+      //let user = JSON.parse(queryString);
+      let user = $location.search().user;
+      $window.localStorage.setItem('com.inews.user',JSON.stringify(user));
+      $location.search('');
+    }
     return AuthenticationService.isAuth();
   };
-
+  
 });
