@@ -36,10 +36,10 @@
   <div class="news-topic-wrapper">
     <div ng-repeat="topic in topics">
       <span class="news-topic">
-        {{ topic }}
+        {{ topic.title }}
         <i class="fa fa-times-circle news-topic-btn"
            aria-hidden="true"
-           ng-click="removeTopic(topic)"></i>
+           ng-click="removeTopic($index)"></i>
       </span>
     </div>
     

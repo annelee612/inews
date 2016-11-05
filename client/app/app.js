@@ -15,8 +15,8 @@ angular.module('inews', [
   $locationProvider.html5Mode(true);
 })
 
-.controller('appCtrl', function($scope, $mdDialog, $location,
-                                AuthenticationService, newsService, $window) {
+.controller('appCtrl', function($scope, $mdDialog, $location, $window,
+                                AuthenticationService, newsService, httpService) {
   
   /////////////// NEWS FEEDS /////////////////////
   $scope.topics = [];
@@ -36,27 +36,32 @@ angular.module('inews', [
   };
 
   $scope.addNewsTopic = function() {
-    //TODO: Do httpService call to add topic
-    $scope.topics.push($scope.newTopicInput);
+    var newId = $scope.newTopicInput.toLowerCase().replace(' ', '_');
+    var newTopic = {
+      title: $scope.newTopicInput,
+      id: newId
+    } 
+      
+    $scope.topics.push(newTopic);
     $scope.newTopicInput = '';
-  };
-
-  $scope.removeTopic = function(topic) {
-    //TODO: Do httpService call to update
-    var index = $scope.topics.indexOf(topic);
-    if (index !== -1) {
-      $scope.topics.splice(index, 1);
-    }
-  };
-
-  $scope.newsShowMore = function(newsfeed) {
-    console.log('show more', newsfeed);
-
     
+    httpService.create('/api/newsfeeds', {
+      title: newTopic.title
+    }).success(function(data) {
+      data.newsItems = JSON.parse(data.newsItems);
+      $scope.newsfeeds.push(data);
+    });
   };
 
-  $scope.newsSettings = function() {
-    console.log('settings');
+  $scope.removeTopic = function(index) {
+    var topic = $scope.topics[index];
+    $scope.topics.splice(index, 1);
+    for (var i = 0; i < $scope.newsfeeds.length; i++) {
+      if ($scope.newsfeeds[i].title === topic.title) {
+        $scope.newsfeeds.splice(i, 1);
+        break;
+      }
+    }
   };
 
   //////////// AUTHENTICATION ////////////////////

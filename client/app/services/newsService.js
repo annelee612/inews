@@ -36,7 +36,7 @@ angular.module('inews.services.newsService', [])
       if (results[0].data.feeds.length > 0) {
         var feeds = results[0].data.feeds;
         for (var i = 0; i < feeds.length; i++) {
-          topics.push(feeds[i].title);
+          topics.push(feeds[i]);
           promises.push(httpService.get('/api/newsfeeds/' + feeds[i].id));
         }
       }
