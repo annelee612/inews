@@ -95,11 +95,33 @@
               </md-card-actions>
             </md-card>
           </div>
+           <div class="events-container">
+            <div class="events-header">
+              <span class="events-title">Events Near Me</span>
+              <md-button class="events-button";" ng-click='loadMore1()' aria-label="Show more or less"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></md-button>
+              <md-button class="events-button";" aria-label="Settings"><i class="fa fa-cogs" aria-hidden="true"></i></md-button>
+            </div>
+            <md-card class="md-padding" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{}}</span>
+                  <span class="md-subhead">{{}}{{ }}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                  <div class="md-media-lg card-media" style="background-image:url({{news.image.thumbnail.contentUrl}})"></div>
+                </md-card-title-media>
+              </md-card-title>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button></md-button>
+                <md-button>Action 2</md-button>
+              </md-card-actions>
+            </md-card>
+          </div>
+
 
         </div>
-
-
       </div>
+
 
 
 

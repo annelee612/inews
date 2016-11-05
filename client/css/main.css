@@ -85,3 +85,31 @@ html {
   float:right;
   color: white;
 } 
+
+.events-topic {
+  padding: 0 1em;
+  margin: 0.1em 0;
+  background-color: #443939;
+  color: white;
+  border-radius: 3px;
+  display: inline-block;
+}
+.events-container {
+  border: 1px solid #dcdcdc;
+}
+.events-header {
+  background-color:#02C8A7;
+  display: block;
+  line-height: 3em;
+}
+.events-title {
+  margin-left: 1em;
+  color: white;
+  font-weight: 900;
+}
+.events-button {
+  position: relative;
+  width: 2em;
+  float:right;
+  color: white;
+} 
