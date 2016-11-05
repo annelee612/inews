@@ -95,24 +95,45 @@ footer {
 }
 
 .weather-icon {
-  width: 40%;
+  width: 30%;
   height: 100%;
-  background-image: url('/assets/images/sunny.png');
   background-size: auto 100%;
   background-position: center;
   background-repeat: no-repeat;
   float: left;  
 }
 
+.main-weather-icon {
+  width: 50%;
+  height: auto;
+}
+
 .weather-description {
-  width: 55%;
+  width: 70%;
   height: 100%;
-  float: left;
+  float: right;
 }
 
 .weather-description-title {
-  width: 100%;
-  text-align: center;
+/*  float: right;
+*//*  width: 70%;
+*/text-align: left;
+  font-size: 1.4em;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  float: left;
+  width: auto;
+}
+
+.weather-description-details {
+  float: right;
+}
+
+.weather-description-location {
+  float: right;
+}
+
+.weather-time-last-update {
+  float: right;
 }
 
 .weather-description-icons {
@@ -131,8 +152,8 @@ footer {
   display: block;
   height: 75px;
   width: 100%;
-  background-image: url('/assets/images/sunny.png');
-  background-position: center;
+/*  background-image: url('/assets/images/sunny.png');
+*/  background-position: center;
   background-size: auto 100%;
   background-repeat: no-repeat;
 }
