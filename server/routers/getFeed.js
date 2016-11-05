@@ -57,10 +57,10 @@ router.route('/:id').get(function(req, res) {
 router.route('/').get(function(req, res) {
   if (req.user) {
     Feed.find({userId: req.user.username}).then(feeds => {
-      res.json(feeds.map(feed => feed.title));
+      res.json(feeds.map(feed => Object.assign({}, {title: feed.title, id: feed.id}) ));
     });
   } else {
-    res.json({feeds: ['election', 'liverpool', 'tentacles', 'robot_consciousness']});
+    res.json({feeds: [{title:'Election', id:'election'}, {title:'Liverpool', id:'liverpool'}, {title:'Tentacles', id:'tentacles'}, {title:'Robot Consciousness', id:'robot_consciousness'}]});
   }
 });
 
