@@ -50,7 +50,7 @@ angular.module('inews.services.newsService', [])
         weather: results[0].data,
         news: [],
         topics: topics,
-        meetups: results[2].data
+        meetupObject: results[2].data
       }
 
       for (var i = 1; i < results.length; i++) {

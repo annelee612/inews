@@ -23,11 +23,13 @@ angular.module('inews', [
   $scope.topics = [];
   $scope.newsfeeds = [];
   $scope.weather = {};
+  $scope.meetupObject = {};
   newsService.getAllFeeds().then(function(results){
     console.log('results from getAllFeeds', results);
     $scope.topics = results.topics;
     $scope.newsfeeds = results.news;
     $scope.weather = results.weather;
+    $scope.meetupObject = results.meetupObject;
   }).catch(function(error) {
     console.error(error);
   });
