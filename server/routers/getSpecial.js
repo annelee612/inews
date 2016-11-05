@@ -8,7 +8,7 @@ var WEATHER_API_KEY = require('../config.js').WEATHER_API_KEY;
 var router = express.Router();
 
 router.route('/meetups').get(function(req, res) {
-  console.log(req.user);
+  if (!req.user) return res.json({message: 'You must be logged in with meetup'});
   var options = {
     method: 'GET',
     url: 'https://api.meetup.com/recommended/events?&sign=true&photo-host=public&page=10',
