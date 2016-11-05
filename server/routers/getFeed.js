@@ -11,6 +11,7 @@ router.route('/').post(function(req, res) {
   // if (!req.user) return res.json({message: 'You need to be logged in to create a feed'});
   let newFeed = new Feed();
   newFeed.title = req.body.title;
+  console.log(req.user);
   newFeed.userId = req.user ? req.user.username : 't'; // default username for testing only
   newFeed.color = req.body.color || '#3366ff';
   newFeed.order = 1;
@@ -57,6 +58,7 @@ router.route('/:id').get(function(req, res) {
 router.route('/').get(function(req, res) {
   if (req.user) {
     Feed.find({userId: req.user.username}).then(feeds => {
+      if (!feeds || feeds.length === 0) return res.json({message:"No feeds"});
       res.json(feeds.map(feed => Object.assign({}, {title: feed.title, id: feed.id}) ));
     });
   } else {

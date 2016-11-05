@@ -13,7 +13,7 @@ angular.module('inews.services.newsService', [])
   var getAllFeeds = function() {
     var deferred = $q.defer();
     var topics = [];
-    
+
     var getGeoLocation = function(options) {
       return $q(function (resolve, reject) {
         navigator.geolocation.getCurrentPosition(resolve, reject, options);
@@ -23,7 +23,7 @@ angular.module('inews.services.newsService', [])
     $q.all([httpService.get('/api/newsfeeds'),
             getGeoLocation()]).then(function(results) {
       var promises = [];
-      
+
       //Location
       if (results[1]) {
         var lat = results[1].coords.latitude;
@@ -33,8 +33,8 @@ angular.module('inews.services.newsService', [])
         promises.push(httpService.get('/api/localnews?lat=' + lat + '&lon=' + lon));
       }
 
-      if (results[0].data.feeds && results[0].data.feeds.length > 0) {
-        var feeds = results[0].data.feeds;
+      if (results[0].data.length > 0) {
+        var feeds = results[0].data;
         for (var i = 0; i < feeds.length; i++) {
           topics.push(feeds[i]);
           promises.push(httpService.get('/api/newsfeeds/' + feeds[i].id));
@@ -57,15 +57,15 @@ angular.module('inews.services.newsService', [])
         if (results[i].data.newsItems) {
           var newsItems = JSON.parse(results[i].data.newsItems[0]);
           results[i].data.newsItems = newsItems;
-          weatherAndNews.news.push(results[i].data);  
+          weatherAndNews.news.push(results[i].data);
         } else {
           console.log('no such feed');
         }
       }
-    
+
       deferred.resolve(weatherAndNews);
     }).catch(function(error) {
-      deferred.reject(error);      
+      deferred.reject(error);
     });
 
     return deferred.promise;

@@ -73,7 +73,7 @@ router.route('/weather').get(function(req, res) {
       resp = JSON.parse(resp);
       request({url:'https://api.wunderground.com/api/'+WEATHER_API_KEY+'/conditions/'+resp.RESULTS[0].l+'.json', headers: {'User-Agent': 'iNews Project 0.0.2' }}).then(content => {
         var content = JSON.parse(content);
-        if (!content || Object.keys(content).length===0) return res.json({message: 'Error getting weather data'});
+        if (!content || Object.keys(content).length===0 || !content.current_observation) return res.json({message: 'Error getting weather data'});
         var weather = {title: 'Weather for '+content.current_observation.display_location.full, color: '#FFDF00', current: content};
         request({url:'https://api.wunderground.com/api/'+WEATHER_API_KEY+'/forecast/'+resp.RESULTS[0].l+'.json', headers: {'User-Agent': 'iNews Project 0.0.2' }}).then(forecast => {
           weather.forecast = JSON.parse(forecast);

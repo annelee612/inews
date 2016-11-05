@@ -2,15 +2,16 @@
 
 angular.module('inews.services.httpService', [])
 .factory('httpService', function httpService($http) {
-  
+
   //CREATE
   function create(relativUrl, data) {
     return $http({
       accept: "application/json",
       method: "POST",
+      withCredentials: true,
       url: relativUrl,
       data: data
-    });
+    }, {withCredentials: true});
   }
 
   //READ

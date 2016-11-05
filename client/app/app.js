@@ -6,18 +6,19 @@ angular.module('inews', [
   'inews.services.httpService',
   'inews.services.newsService'
 ])
-.config(function($mdThemingProvider, $locationProvider) {
+.config(function($mdThemingProvider, $locationProvider, $httpProvider) {
   $mdThemingProvider.theme('light-blue').backgroundPalette('blue');
   $mdThemingProvider.theme('light-orange').backgroundPalette('orange');
   $mdThemingProvider.theme('light-grey').backgroundPalette('grey');
   $mdThemingProvider.theme('light-green').backgroundPalette('green');
 
   $locationProvider.html5Mode(true);
+  $httpProvider.defaults.withCredentials = true;
 })
 
 .controller('appCtrl', function($scope, $mdDialog, $location, $window,
                                 AuthenticationService, newsService, httpService) {
-  
+
   /////////////// NEWS FEEDS /////////////////////
   $scope.topics = [];
   $scope.newsfeeds = [];
@@ -40,11 +41,11 @@ angular.module('inews', [
     var newTopic = {
       title: $scope.newTopicInput,
       id: newId
-    } 
-      
+    }
+
     $scope.topics.push(newTopic);
     $scope.newTopicInput = '';
-    
+
     httpService.create('/api/newsfeeds', {
       title: newTopic.title
     }).success(function(data) {
@@ -149,5 +150,5 @@ angular.module('inews', [
     }
     return AuthenticationService.isAuth();
   };
-  
+
 });
