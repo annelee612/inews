@@ -46,7 +46,6 @@ angular.module('inews.services.newsService', [])
 
       return $q.all(promises);
     }).then(function(results) {
-      console.log(results);
       var weatherAndNews = {
         weather: results[0].data,
         news: [],
