@@ -9,9 +9,9 @@
   <link href="https://fonts.googleapis.com/css?family=Bitter:700" rel="stylesheet">
 </head>
 <body ng-app='inews' ng-controller="appCtrl" ng-cloak>
-  
+
   <base href="/">
-  
+
   <div class='navbar' style="border-bottom: 1px solid #dcdcdc; height: 5em;">
     <img class='logo' src='/assets/worldwide-location-24.jpg'></img>
     <span style="font-size: 2em; line-height: 2.5em; font-weight: 700; font-family: 'Bitter', serif;">iNews</span>
@@ -43,7 +43,7 @@
            ng-click="removeTopic($index)"></i>
       </span>
     </span>
-    
+
     <form style="display:inline-block" ng-submit="addNewsTopic()">
       <md-input-container class="md-block" style="vertical-align:top; height: 2em; font-size:0.8em; display:inline-block; margin-top: 0.4em">
       <label class="placeholder" style="line-height:1.1em">Add topic...</label>
@@ -59,7 +59,7 @@
       <div class="border">
         <div class="news-wrapper-topic">
           <span class="news-wrapper-topic-title">Weather</span>
-          
+
           <md-button class="news-wrapper-topic-btn"
                      ng-click="newsSettings()"
                      aria-label="Settings">
@@ -140,15 +140,17 @@
                  md-theme-watch>
           <md-card-title>
             <md-card-title-text>
-              <span class="md-headline">{{ meetup.name }}</span>
-              <span class="md-subhead">{{ meetup.description}}</span>
+              <span style="float: right; display:inline; position:absolute; font-size:1.4em; right: 3em;">{{meetup.time - meetup.utc_offset | date:'MMM dd @ HH:mm'}}</span>
+              <span class="md-headline" style="max-width:calc(100% - 4em); overflow:hidden;">{{meetup.name}} | <span style="font-style:italic">{{meetup.group.name}}</span></span>
+              <span class="md-subhead">{{meetup.venue.address_1}}, {{meetup.venue.city}}</span>
+              <span class="md-subhead" ng-bind-html="meetup.description"></span>
             </md-card-title-text>
             <md-card-title-media>
               <div class="md-media-lg card-media" style="background-image:url({{news.image.thumbnail.contentUrl}})"></div>
             </md-card-title-media>
           </md-card-title>
           <md-card-actions layout="row" layout-align="end center">
-            <md-button>Action 2</md-button>
+            <md-button>See More</md-button>
           </md-card-actions>
         </md-card>
       </div>
@@ -275,6 +277,8 @@
 
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-animate/angular-animate.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
+
   <script src="lib/angular-aria/angular-aria.js"></script>
   <script src="lib/angular-material/angular-material.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>

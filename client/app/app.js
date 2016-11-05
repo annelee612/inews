@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('inews', [
-  'ngMaterial',
+  'ngMaterial','ngSanitize',
   'inews.services.authService',
   'inews.services.httpService',
   'inews.services.newsService'
@@ -15,7 +15,6 @@ angular.module('inews', [
   $locationProvider.html5Mode(true);
   $httpProvider.defaults.withCredentials = true;
 })
-
 .controller('appCtrl', function($scope, $mdDialog, $location, $window,
                                 AuthenticationService, newsService, httpService) {
 
