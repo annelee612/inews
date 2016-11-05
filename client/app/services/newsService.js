@@ -12,6 +12,7 @@ angular.module('inews.services.newsService', [])
 
   var getAllFeeds = function() {
     var deferred = $q.defer();
+    var topics = [];
     
     var getGeoLocation = function(options) {
       return $q(function (resolve, reject) {
@@ -34,6 +35,7 @@ angular.module('inews.services.newsService', [])
 
       if (results[0].data.feeds.length > 0) {
         var feeds = results[0].data.feeds;
+        topics = results[0].data.feeds;
         for (var i = 0; i < feeds.length; i++) {
           promises.push(httpService.get('/api/newsfeeds/' + feeds[i]));
         }
@@ -43,7 +45,8 @@ angular.module('inews.services.newsService', [])
     }).then(function(results) {
       var weatherAndNews = {
         weather: results[0].data,
-        news: []
+        news: [],
+        topics: topics
       }
 
       for (var i = 1; i < results.length; i++) {

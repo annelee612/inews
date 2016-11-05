@@ -1,240 +1,155 @@
 <!doctype html>
-    <head>
-        <meta charset="utf-8">
-        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
-        <title>iNews - Local News for You</title>
-        <!-- <meta name="description" content=""> -->
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-      <link rel="stylesheet" href="lib/angular-material/angular-material.css">
-      <link rel='stylesheet' type='text/css' href='css/main.css'>
-        <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
-    </head>
-    <body ng-app='inews' ng-controller="navController" ng-cloak>
-      <base href="/">
-      <div class='navbar'>
-        <img class='logo' src='./assets/logo.png' />
-        <div class='loginbox'>
-        <md-button style="background-image: url(http://comparegang.com/wp-content/uploads/2016/09/Meetup_Logo_2015-300x204.png); background-size: contain; background-repeat: no-repeat; padding-left: 4em;" ng-hide='isAuth()' ng-click="meetupshow($event)" class="md-raised">
-          Sign In With Meetup
-        </md-button>
-        <md-button ng-hide='isAuth()' ng-click="signinshow($event)" class="md-raised">
-          Sign In
-        </md-button>
-        <md-button ng-hide='isAuth()' ng-click="signupshow($event)" class="md-raised">
-          Sign Up
-        </md-button>
-        <md-button ng-show='isAuth()' ng-click="logout()" class="md-raised">
-          Sign Out
-        </md-button>
-      </div>
-        <p>{{error}}</p>
-      </div>
+<head>
+  <meta charset="utf-8">
+  <title>iNews - Local News for You</title>
 
-      <div layout='row' layout-xs="column" layout-margin ng-controller='localNewsController' id='LocalNews'>
-        <div flex>
-          <h2>Local News</h2>
-          <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isLocNewsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
+  <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+  <link rel='stylesheet' type='text/css' href='/assets/css/main.css'>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Bitter:700" rel="stylesheet">
+</head>
+<body ng-app='inews' ng-controller="appCtrl" ng-cloak>
+  
+  <base href="/">
+  
+  <div class='navbar' style="border-bottom: 1px solid black; height: 5em;">
+    <img class='logo' src='/assets/worldwide-location-24.jpg'></img>
+    <span style="font-size: 2em; line-height: 2.5em; font-weight: 700; font-family: 'Bitter', serif;">iNews</span>
+    <div class='loginbox' style="position: relative; top: 1em;">
+    <md-button style="background-image: url(http://comparegang.com/wp-content/uploads/2016/09/Meetup_Logo_2015-300x204.png); background-size: contain; background-repeat: no-repeat; padding-left: 4em;" ng-hide='isAuth()' ng-click="meetupshow($event)" class="md-raised">
+      Sign In With Meetup
+    </md-button>
+    <md-button ng-hide='isAuth()' ng-click="signinshow($event)" class="md-raised">
+      Sign In
+    </md-button>
+    <md-button ng-hide='isAuth()' ng-click="signupshow($event)" class="md-raised">
+      Sign Up
+    </md-button>
+    <md-button ng-show='isAuth()' ng-click="logout()" class="md-raised">
+      Sign Out
+    </md-button>
+  </div>
+    <p>{{error}}</p>
+  </div>
+
+  <!-- TOPIC WRAPPER -->
+  <div class="news-topic-wrapper">
+    <div ng-repeat="topic in topics">
+      <span class="news-topic">
+        {{ topic }}
+        <i class="fa fa-times-circle news-topic-btn"
+           aria-hidden="true"
+           ng-click="removeTopic(topic)"></i>
+      </span>
+    </div>
+    
+    <form ng-submit="addNewsTopic()">
+      <input class="news-topic-add" ng-model="newTopicInput" type="text" placeholder="Add Topic...">  
+    </form>
+  </div>
+
+  <!-- WEATHER WRAPPER -->
+  <div layout='row' layout-sm="column" layout-margin>
+    <div flex>
+      <div class="border">
+        <div class="news-wrapper-topic">
+          <span class="news-wrapper-topic-title">Weather</span>
+          
+          <md-button class="news-wrapper-topic-btn"
+                     ng-click="newsSettings()"
+                     aria-label="Settings">
+            <i class="fa fa-cogs" aria-hidden="true"></i>
+          </md-button>
+        </div>
+
+        <md-card class="md-padding weather" md-theme-watch>
+          <div class="weather-icon"></div>
+          <div class="weather-description">
+            <h2 class="weather-description-title">Sunny</h2>
+            <div class="weather-description-icons">
+            <div class="weather-description-icons-wrapper">
+              <div class="weather-description-icons-icon"></div>
+              <p class="weather-description-icons-text">Mon</p>
+            </div>
+            <div class="weather-description-icons-wrapper">
+              <div class="weather-description-icons-icon"></div>
+              <p class="weather-description-icons-text">Tue</p>
+            </div>
+            <div class="weather-description-icons-wrapper">
+              <div class="weather-description-icons-icon"></div>
+              <p class="weather-description-icons-text">Wed</p>
+            </div>
+            <div class="weather-description-icons-wrapper">
+              <div class="weather-description-icons-icon"></div>
+              <p class="weather-description-icons-text">Thr</p>
+            </div>
+            <div class="weather-description-icons-wrapper">
+              <div class="weather-description-icons-icon"></div>
+              <p class="weather-description-icons-text">Fri</p>
+            </div>
+            </div>
           </div>
-          <md-card class="md-padding" md-theme="light-green" ng-repeat='news in localnews | limitTo:lim1' ng-show='!isLocNewsLoading'>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <span class="md-headline">{{ news.name}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.datePublished}}</span>
-          </md-card>
-          <md-button ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</md-button>
-        </div>
-
-        <div flex>
-          <h2>News Search</h2>
-          <form ng-show='isAuth()'>
-            <input class='inputfield' ng-model='search' type="text" name="search">
-            <md-button ng-click='initializeSearch(search)' type="submit">Search</md-button>
-          </form>
-          <br>
-          <p ng-hide='isAuth()'>Sign in to use the search feature!</p>
-
-          <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isSearchNewsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
-          </div>
-          <md-card class="md-padding" md-theme="light-green" ng-repeat='news in searchnews | limitTo:lim2' ng-show='!isSearchNewsLoading'>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <span class="md-headline">{{ news.name}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.datePublished}}</span>
-          </md-card>
-          <md-button ng-show='isAuth()' ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</md-button>
-        </div>
+        </md-card>
       </div>
 
-      <div layout='row' layout-xs="column" layout-margin ng-controller='customNewsController' id='CustomNews'>
-        <div flex>
-          <h2>{{city1 || 'Custom 1'}} News</h2>
-          <form ng-show='isAuth()'>
-            <input class='inputfield' ng-model='city1' type="text" name="city1">
-            <md-button ng-click='initializeCustom1(city1)' type="submit">Save</md-button>
-          </form>
-          <br>
-          <p ng-hide='isAuth()'>Sign in to save your custom news here!</p>
-          <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isCustom1newsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
-          </div>
-          <md-card class="md-padding" md-theme="light-orange" ng-show='isAuth() && !isCustom1newsLoading' ng-repeat='news in custom1news | limitTo:lim1'>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <span class="md-headline">{{ news.name}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.datePublished}}</span>
-          </md-card>
-          <md-button ng-show='isAuth()' ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</md-button>
+    </div>
+  </div>
+
+
+  <!-- NEWS WRAPPER -->
+  <div layout='row' layout-sm="column" layout-margin>
+    <div flex>
+      <div class="border" ng-repeat="newsfeed in newsfeeds" ng-init="newsfeed.limit = 1">
+        <div class="news-wrapper-topic" style="background-color:{{newsfeed.color}};">
+          <span class="news-wrapper-topic-title">{{ newsfeed.title }}</span>
+
+          <md-button class="news-wrapper-topic-btn"
+                     ng-click='newsfeed.limit = newsfeed.limit === 1 ? newsfeed.newsItems.value.length: 1'
+                     aria-label="Show more or less">
+            <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+          </md-button>
+
+          <md-button class="news-wrapper-topic-btn"
+                     ng-click="newsSettings()"
+                     aria-label="Settings">
+            <i class="fa fa-cogs" aria-hidden="true"></i>
+          </md-button>
         </div>
 
-        <div flex>
-          <h2>{{city2 || 'Custom 2'}} News</h2>
-          <form ng-show='isAuth()'>
-            <input class='inputfield' ng-model='city2' type="text" name="city2">
-            <md-button ng-click='initializeCustom2(city2)' type="submit">Save</md-button>
-          </form>
-          <br>
-          <p ng-hide='isAuth()'>Here is another! Sign up for a free account now!</p>
-          <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isCustom2newsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
-          </div>
-          <md-card class="md-padding" md-theme="light-orange" ng-show='isAuth() && !isCustom2newsLoading' ng-repeat='news in custom2news | limitTo:lim2'>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.image.thumbnail.contentUrl}}'>
-              <span class="md-headline">{{ news.name}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.datePublished}}</span>
-          </md-card>
-          <md-button ng-show='isAuth()' ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</md-button>
-        </div>
+        <md-card class="md-padding"
+                 ng-repeat='news in newsfeed.newsItems.value | limitTo:newsfeed.limit||1'
+                 md-theme-watch>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{news.name}}</span>
+              <span class="md-subhead">{{news.description}}{{ news.datePublished}}</span>
+            </md-card-title-text>
+            <md-card-title-media>
+              <div class="md-media-lg card-media" style="background-image:url({{news.image.thumbnail.contentUrl}})"></div>
+            </md-card-title-media>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button>{{news.url}}</md-button>
+          </md-card-actions>
+        </md-card>
       </div>
 
-      <div layout='row' layout-xs="column" layout-margin ng-controller='defaultNewsController' id='USNews'>
-        <div flex>
-          <h2>U.S. News</h2>
-          <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isUSNewsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
-          </div>
-          <md-card class="md-padding" md-theme="light-blue" ng-repeat='news in usNews | limitTo:lim1' ng-show='!isUSNewsLoading' md-theme-watch>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.urlToImage}}'>
-              <span class="md-headline">{{ news.title}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.publishedAt}}</span>
-          </md-card>
-          <md-button ng-click='loadMore1()'>{{lim1 === 3 ? 'Show More' : 'Show Less'}}</md-button>
-        </div>
+    </div>
+  </div>
 
-        <div flex>
-          <h2>World News</h2>
-          <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isWorldNewsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
-          </div>
-          <md-card class="md-padding" md-theme="light-blue" ng-repeat='news in worldNews | limitTo:lim2' ng-show='!isWorldNewsLoading'>
-            <a ng-href="{{ news.url}}">
-              <img class='tile' ng-src='{{ news.urlToImage}}'>
-              <span class="md-headline">{{ news.title}}</span>
-            </a>
-            <span class="md-subhead">{{ news.description}}</span>
-            <span class="md-subhead">{{ news.publishedAt}}</span>
-          </md-card>
-          <md-button ng-click='loadMore2()'>{{lim2 === 3 ? 'Show More' : 'Show Less'}}</md-button>
-        </div>
-      </div>
+  <footer>
+    <p>&copy; iNews 2016</p>
+  </footer>
 
-      <div style="visibility: hidden">
-        <div class="md-dialog-container" id="signInDialog">
-          <md-dialog>
-            <form name="loginForm" data-ng-submit="login()">
-              <md-dialog-content>
-                  <div class="md-dialog-content">
-                      <md-input-container class="md-block">
-                          <label>Username:</label>
-                          <input ng-model="user.username" required>
-                      </md-input-container>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-animate/angular-animate.js"></script>
+  <script src="lib/angular-aria/angular-aria.js"></script>
+  <script src="lib/angular-material/angular-material.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
 
-                      <md-input-container class="md-block">
-                          <label>Password:</label>
-                          <input ng-model="user.password" type="password" required>
-                      </md-input-container>
-                  </div>
-              </md-dialog-content>
-              <md-dialog-actions layout="row">
-                  <span flex></span>
-                  <md-button type="submit" class="md-primary"
-                             ng-class="{'md-raised': (loginForm.$dirty && loginForm.$valid) }">
-                      OK
-                  </md-button>
-                  <md-button type="button" ng-click="signinCancel(); $event.stopPropagation();">
-                      Cancel
-                  </md-button>
-              </md-dialog-actions>
-            </form>
-          </md-dialog>
-        </div>
-      </div>
-
-      <div style="visibility: hidden">
-        <div class="md-dialog-container" id="signUpDialog">
-          <md-dialog>
-            <form name="signupForm" data-ng-submit="signup()">
-              <md-dialog-content>
-                  <div class="md-dialog-content">
-                      <md-input-container class="md-block">
-                          <label>Username:</label>
-                          <input ng-model="user.username" required>
-                      </md-input-container>
-
-                      <md-input-container class="md-block">
-                          <label>Password:</label>
-                          <input ng-model="user.password" type="password" required>
-                      </md-input-container>
-
-                      <md-input-container class="md-block">
-                          <label>Password Confirm:</label>
-                          <input ng-model="user.confirm" type="password" required>
-                      </md-input-container>
-                  </div>
-              </md-dialog-content>
-              <md-dialog-actions layout="row">
-                  <span flex></span>
-                  <md-button type="submit" class="md-primary"
-                             ng-class="{'md-raised': (signupForm.$dirty && signupForm.$valid) }">
-                      OK
-                  </md-button>
-                  <md-button type="button" ng-click="signupCancel(); $event.stopPropagation();">
-                      Cancel
-                  </md-button>
-              </md-dialog-actions>
-            </form>
-          </md-dialog>
-        </div>
-      </div>
-
-      <footer>
-        <p>&copy; iNews 2016</p>
-      </footer>
-
-      <script src="lib/angular/angular.js"></script>
-      <script src="lib/angular-animate/angular-animate.js"></script>
-      <script src="lib/angular-aria/angular-aria.js"></script>
-      <script src="lib/angular-material/angular-material.js"></script>
-      <script src="lib/angular-route/angular-route.js"></script>
-
-      <script src="app/services/services.js"></script>
-      <script src="app/defaultNews/defaultNews.js"></script>
-      <script src="app/localNews/localNews.js"></script>
-      <script src="app/customNews/customNews.js"></script>
-      <script src="app/navigation/navigation.js"></script>
-      <script src="app/app.js"></script>
-    </body>
+  <script src="app/services/authService.js"></script>
+  <script src="app/services/httpService.js"></script>
+  <script src="app/services/newsService.js"></script>
+  <script src="app/app.js"></script>
+</body>
 </html>

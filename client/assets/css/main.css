@@ -28,8 +28,22 @@
    ========================================================================== */
 html {
   width: 100%;
-  overflow: hidden;
 }
+
+footer {
+  width: 100%;
+  text-align: center;
+}
+
+.news-topic-wrapper {
+  padding-left: 1em;
+  padding-right: 1em;
+  border-bottom: 1px solid black;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 1.4em;
+  line-height: 2em;
+}
+
 .news-topic {
   padding: 0.2em 1em 0.2em 1em;
   margin: 0.1em 0;
@@ -37,3 +51,90 @@ html {
   color: white;
   border-radius: 3px;
 }
+
+.news-topic-btn:hover {
+  cursor: pointer;
+}
+
+.news-topic-add {
+  border: 1px solid black;
+  width: 100%;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+.news-wrapper-topic {
+  background-color:#EA8644;
+  display: block;
+  line-height: 3em;
+}
+
+.news-wrapper-topic-title {
+  margin-left: 1em;
+  color: white;
+  font-weight: 900;
+}
+
+.news-wrapper-topic-btn {
+  position: relative;
+  width: 2em;
+  float:right;
+  color: white;
+}
+
+.weather {
+  clear: both;
+  display: block;
+  height: 200px;
+}
+
+.weather-icon {
+  width: 40%;
+  height: 100%;
+  background-image: url('/assets/images/sunny.png');
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  float: left;  
+}
+
+.weather-description {
+  width: 55%;
+  height: 100%;
+  float: left;
+}
+
+.weather-description-title {
+  width: 100%;
+  text-align: center;
+}
+
+.weather-description-icons {
+  width: 100%;
+  height: 100px;
+  clear: both;
+}
+
+.weather-description-icons-wrapper {
+  display: block;
+  float: left;
+  width: 20%;
+}
+
+.weather-description-icons-icon {
+  display: block;
+  height: 75px;
+  width: 100%;
+  background-image: url('/assets/images/sunny.png');
+  background-position: center;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+}
+
+.weather-description-icons-text {
+  width: 100%;
+  text-align: center;
+}
+
