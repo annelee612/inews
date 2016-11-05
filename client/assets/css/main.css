@@ -38,18 +38,21 @@ footer {
 .news-topic-wrapper {
   padding-left: 1em;
   padding-right: 1em;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #dcdcdc;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   font-size: 1.4em;
   line-height: 2em;
+  min-height: 2em;
+  padding-top: 1em;
 }
 
 .news-topic {
-  padding: 0.2em 1em 0.2em 1em;
-  margin: 0.1em 0;
+  padding: 0em 1em;
+  margin: 0.1em 0em;
   background-color: #443939;
   color: white;
   border-radius: 3px;
+  display: inline-block;
 }
 
 .news-topic-btn:hover {
@@ -57,12 +60,13 @@ footer {
 }
 
 .news-topic-add {
-  border: 1px solid black;
-  width: 100%;
+  border-bottom: 1px solid #dbdbdb;
+  width: 20%;
+  display: inline-block;
 }
 
 .border {
-  border: 1px solid black;
+  border: 1px solid #dcdcdc;
 }
 
 .news-wrapper-topic {

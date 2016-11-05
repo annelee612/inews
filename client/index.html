@@ -12,7 +12,7 @@
   
   <base href="/">
   
-  <div class='navbar' style="border-bottom: 1px solid black; height: 5em;">
+  <div class='navbar' style="border-bottom: 1px solid #dcdcdc; height: 5em;">
     <img class='logo' src='/assets/worldwide-location-24.jpg'></img>
     <span style="font-size: 2em; line-height: 2.5em; font-weight: 700; font-family: 'Bitter', serif;">iNews</span>
     <div class='loginbox' style="position: relative; top: 1em;">
@@ -31,20 +31,25 @@
   </div>
     <p>{{error}}</p>
   </div>
+  <div class='border' style='border-bottom: 1px solid #dcdcdc'></div>
 
   <!-- TOPIC WRAPPER -->
   <div class="news-topic-wrapper">
-    <div ng-repeat="topic in topics">
+    <span ng-repeat="topic in topics">
       <span class="news-topic">
         {{ topic.title }}
         <i class="fa fa-times-circle news-topic-btn"
            aria-hidden="true"
            ng-click="removeTopic($index)"></i>
       </span>
-    </div>
+    </span>
     
-    <form ng-submit="addNewsTopic()">
-      <input class="news-topic-add" ng-model="newTopicInput" type="text" placeholder="Add Topic...">  
+    <form style="display:inline-block" ng-submit="addNewsTopic()">
+      <md-input-container class="md-block" style="vertical-align:top; height: 2em; font-size:0.8em; display:inline-block; margin-top: 0.4em">
+      <label class="placeholder" style="line-height:1.1em">Add topic...</label>
+      <input ng-model="newTopicInput"></input>
+      <i class="fa fa-check-circle" style="display: flex; line-height:1.4em; cursor:pointer"></i>
+      </md-input-container>
     </form>
   </div>
 
@@ -122,14 +127,17 @@
           <md-card-title>
             <md-card-title-text>
               <span class="md-headline">{{news.name}}</span>
-              <span class="md-subhead">{{news.description}}{{ news.datePublished}}</span>
+              <span class="md-subhead">{{news.description}}</span>
             </md-card-title-text>
             <md-card-title-media>
               <div class="md-media-lg card-media" style="background-image:url({{news.image.thumbnail.contentUrl}})"></div>
             </md-card-title-media>
           </md-card-title>
-          <md-card-actions layout="row" layout-align="end center">
-            <md-button>{{news.url}}</md-button>
+          <md-card-actions layout="row" layout-align="end center" style="justify-content: space-between">
+            <md-button ng-disabled="true" style="float:left" aria-label="date">{{ news.datePublished | date:'HH:mm, MMM dd'}}</md-button>
+            <a href="{{news.url}}" target="_blank" style="color:inherit; text-decoration:none; margin-right:0.3em">
+            <md-button>Read more</md-button>
+            </a>
           </md-card-actions>
         </md-card>
       </div>
