@@ -33,7 +33,7 @@ angular.module('inews.services.newsService', [])
         promises.push(httpService.get('/api/localnews?lat=' + lat + '&lon=' + lon));
       }
 
-      if (results[0].data.feeds.length > 0) {
+      if (results[0].data.feeds && results[0].data.feeds.length > 0) {
         var feeds = results[0].data.feeds;
         for (var i = 0; i < feeds.length; i++) {
           topics.push(feeds[i]);
@@ -41,12 +41,17 @@ angular.module('inews.services.newsService', [])
         }
       }
 
+      //Meetups
+      promises.push(httpService.get('/api/meetups'));
+
       return $q.all(promises);
     }).then(function(results) {
+      console.log(results);
       var weatherAndNews = {
         weather: results[0].data,
         news: [],
-        topics: topics
+        topics: topics,
+        meetups: results[2].data
       }
 
       for (var i = 1; i < results.length; i++) {
