@@ -73,17 +73,17 @@
             </md-card>
           </div>
 
-          <div style="border: 1px solid #dcdcdc; margin-top: 1em;">
-            <div style="background-color:#EA8644; display: block; line-height: 3em;">
-              <span style="margin-left: 1em; color: white; font-weight: 900;">Weather</span>
-              <md-button style="position: relative; width: 2em; float:right; color: white;" ng-click='loadMore1()' aria-label="Show more or less"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></md-button>
-              <md-button style="position:relative; width:2em; float:right; color: white;" aria-label="Settings"><i class="fa fa-cogs" aria-hidden="true"></i></md-button>
+          <div class="weather-container">
+            <div class="weather-header">
+              <span class="weather-title">Local Weather</span>
+              <md-button class="weather-button";" ng-click='loadMore1()' aria-label="Show more or less"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></md-button>
+              <md-button class="weather-button";" aria-label="Settings"><i class="fa fa-cogs" aria-hidden="true"></i></md-button>
             </div>
             <md-card class="md-padding" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
               <md-card-title>
                 <md-card-title-text>
-                  <span class="md-headline">{{news.name}}</span>
-                  <span class="md-subhead">{{news.description}}{{ news.datePublished}}</span>
+                  <span class="md-headline">{{}}</span>
+                  <span class="md-subhead">{{}}{{ }}</span>
                 </md-card-title-text>
                 <md-card-title-media>
                   <div class="md-media-lg card-media" style="background-image:url({{news.image.thumbnail.contentUrl}})"></div>

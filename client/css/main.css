@@ -28,8 +28,8 @@
    ========================================================================== */
 html {
   width: 100%;
-  overflow: hidden;
-}
+/*  overflow: hidden; note: cannot set overflow to hidden, otherwise site won't scroll;
+*/}
 .news-topic {
   padding: 0 1em;
   margin: 0.1em 0;
@@ -52,6 +52,34 @@ html {
   font-weight: 900;
 }
 .news-button {
+  position: relative;
+  width: 2em;
+  float:right;
+  color: white;
+} 
+
+.weather-topic {
+  padding: 0 1em;
+  margin: 0.1em 0;
+  background-color: #443939;
+  color: white;
+  border-radius: 3px;
+  display: inline-block;
+}
+.weather-container {
+  border: 1px solid #dcdcdc;
+}
+.weather-header {
+  background-color:#EA8644;
+  display: block;
+  line-height: 3em;
+}
+.weather-title {
+  margin-left: 1em;
+  color: white;
+  font-weight: 900;
+}
+.weather-button {
   position: relative;
   width: 2em;
   float:right;
