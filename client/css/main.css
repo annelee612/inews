@@ -38,3 +38,22 @@ html {
   border-radius: 3px;
   display: inline-block;
 }
+.news-container {
+  border: 1px solid black;
+}
+.news-header {
+  background-color:#8A9AE2;
+  display: block;
+  line-height: 3em;
+}
+.news-title {
+  margin-left: 1em;
+  color: white;
+  font-weight: 900;
+}
+.news-button {
+  position: relative;
+  width: 2em;
+  float:right;
+  color: white;
+} 

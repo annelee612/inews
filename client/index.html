@@ -47,14 +47,14 @@
       <div layout='row' layout-xs="column" layout-margin ng-controller='localNewsController' id='LocalNews'>
         <div flex>
           <div layout="row" layout-sm="column" layout-align="space-around" ng-show='isLocNewsLoading'>
-            <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular>
+            <md-progress-circular class="md-hue-2" md-diameter="100px" style="left: 49%; position: absolute; top: 49%;"></md-progress-circular>
           </div>
 
-          <div style="border: 1px solid black">
-            <div style="background-color:#8A9AE2; display: block; line-height: 3em;">
-              <span style="margin-left: 1em; color: white; font-weight: 900;">Local News</span>
-              <md-button style="position: relative; width: 2em; float:right; color: white;" ng-click='loadMore1()' aria-label="Show more or less"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></md-button>
-              <md-button style="position:relative; width:2em; float:right; color: white;" aria-label="Settings"><i class="fa fa-cogs" aria-hidden="true"></i></md-button>
+          <div class="news-container">
+            <div class="news-header">
+              <span class="news-title">Local News</span>
+              <md-button class="news-button" ng-click='loadMore1()' aria-label="Show more or less"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></md-button>
+              <md-button class="news-button" aria-label="Settings"><i class="fa fa-cogs" aria-hidden="true"></i></md-button>
             </div>
             <md-card class="md-padding" ng-repeat='news in localnews | limitTo:lim1' ng-show='!isLocNewsLoading' md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
               <md-card-title>
