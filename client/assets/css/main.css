@@ -95,12 +95,14 @@ footer {
 }
 
 .weather-icon {
-  width: 30%;
+  width: 25%;
   height: 100%;
-  background-size: auto 100%;
+  background-size: auto 130%;
   background-position: center;
   background-repeat: no-repeat;
   float: left;  
+  margin-top: 1.5em;
+  margin-left: 2em;
 }
 
 .main-weather-icon {
@@ -122,24 +124,40 @@ footer {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   float: left;
   width: auto;
+  line-height: 1.4em;
+  display: block;
+  margin-right: 0.25em;
 }
 
 .weather-description-details {
   float: right;
+  text-align: left;
+  font-size: 0.8em;
+  font-style: italic;
+  line-height: 1.4em;
+  display: block;
+  width: auto;
+  margin-top: 0.6em;
+  margin-right: 0.2em;
+  
 }
 
-.weather-description-location {
-  float: right;
-}
+
 
 .weather-time-last-update {
-  float: right;
+  float: left;
+  text-align: left;
+  font-size: 0.8em;
+  font-style: italic;
+  line-height: 0.8em;
+  margin-top: 0.1em;
 }
 
 .weather-description-icons {
   width: 100%;
   height: 100px;
   clear: both;
+  margin-top: 0.5em;
 }
 
 .weather-description-icons-wrapper {
@@ -150,8 +168,8 @@ footer {
 
 .weather-description-icons-icon {
   display: block;
-  height: 75px;
-  width: 100%;
+  height: 70%;
+  width: 70%;
 /*  background-image: url('/assets/images/sunny.png');
 */  background-position: center;
   background-size: auto 100%;
@@ -159,7 +177,9 @@ footer {
 }
 
 .weather-description-icons-text {
-  width: 100%;
+  margin-top: 0;
+  width: 70%;
   text-align: center;
+  font-size: 0.8em;
 }
 

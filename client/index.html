@@ -72,40 +72,39 @@
             <img class="main-weather-icon" src="{{weather.current.current_observation.icon_url}}"></img>
           </div>
           <div class="weather-description">
-            <div class="weather-description-title">{{weather.current.current_observation.dewpoint_f}} degrees now</div>
+            <div class="weather-description-title">{{weather.current.current_observation.dewpoint_f}}° now in {{weather.current.current_observation.observation_location.city}}</div>
             <div class="weather-description-details">
-            Feels like {{weather.current.current_observation.feelslike_f}}
+            Feels like {{weather.current.current_observation.feelslike_f}}°
             </div>
-            <div class="weather-description-location">{{weather.current.current_observation.observation_location.city}}</div>
             <div class="weather-time-last-update">{{weather.current.current_observation.observation_time}}</div>
             <div class="weather-description-icons">
             <div class="weather-description-icons-wrapper">
-              <div class="weather-description-icons-icon">
-                <img src="{{weather.forecast.forecast.txt_forecast.forecastday[1].icon_url}}"></img>
+              <div >
+                <img class="weather-description-icons-icon" src="{{weather.forecast.forecast.txt_forecast.forecastday[1].icon_url}}"></img>
               </div>
               <p class="weather-description-icons-text">{{weather.forecast.forecast.txt_forecast.forecastday[1].title}}</p>
             </div>
             <div class="weather-description-icons-wrapper">
-              <div class="weather-description-icons-icon">
-                  <img src="{{weather.forecast.forecast.txt_forecast.forecastday[2].icon_url}}"></img>
+              <div>
+                  <img class="weather-description-icons-icon" src="{{weather.forecast.forecast.txt_forecast.forecastday[2].icon_url}}"></img>
               </div>
               <p class="weather-description-icons-text">{{weather.forecast.forecast.txt_forecast.forecastday[2].title}}</p>
             </div>
             <div class="weather-description-icons-wrapper">
-              <div class="weather-description-icons-icon">
-                  <img src="{{weather.forecast.forecast.txt_forecast.forecastday[3].icon_url}}"></img>
+              <div>
+                  <img class="weather-description-icons-icon" src="{{weather.forecast.forecast.txt_forecast.forecastday[3].icon_url}}"></img>
               </div>
               <p class="weather-description-icons-text">{{weather.forecast.forecast.txt_forecast.forecastday[3].title}}</p>
             </div>
             <div class="weather-description-icons-wrapper">
-              <div class="weather-description-icons-icon">
-                  <img src="{{weather.forecast.forecast.txt_forecast.forecastday[4].icon_url}}"></img>
+              <div>
+                  <img class="weather-description-icons-icon" src="{{weather.forecast.forecast.txt_forecast.forecastday[4].icon_url}}"></img>
               </div>
               <p class="weather-description-icons-text">{{weather.forecast.forecast.txt_forecast.forecastday[4].title}}</p>
             </div>
             <div class="weather-description-icons-wrapper">
-              <div class="weather-description-icons-icon">
-                <img src="{{weather.forecast.forecast.txt_forecast.forecastday[5].icon_url}}"></img>
+              <div>
+                <img class="weather-description-icons-icon" src="{{weather.forecast.forecast.txt_forecast.forecastday[5].icon_url}}"></img>
               </div>
               <p class="weather-description-icons-text">{{weather.forecast.forecast.txt_forecast.forecastday[5].title}}</p>
             </div>
