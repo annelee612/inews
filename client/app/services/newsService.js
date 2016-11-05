@@ -46,11 +46,12 @@ angular.module('inews.services.newsService', [])
 
       return $q.all(promises);
     }).then(function(results) {
+
       var weatherAndNews = {
         weather: results[0].data,
         news: [],
         topics: topics,
-        meetupObject: results[4].data
+        meetupObject: results[results.length-1].data
       }
 
       for (var i = 1; i < results.length; i++) {
